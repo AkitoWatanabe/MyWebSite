@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>水素水のレビューを書く</title>
+<!-- BootstrapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery読み込み -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="js/bootstrap.min.js"></script>
+<!-- 自分のcss読み込み -->
+<link href="css/rework.css" rel="stylesheet">
+<!-- フッターのcss読み込み -->
+<link href="css/sticky-footer.css" rel="stylesheet">
+
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
+				</div>
+				<div class="navbar-link ml-auto">
+					ようこそ<a href="toppage.html">〇〇さん</a>
+				</div>
+				<a class="navbar-link " href="cart.html">カート </a> <a
+					class="navbar-link " href="toppage.html">ログアウト</a>
+			</div>
+		</nav>
+	</header>
+	<br>
+	<form class="form-row">
+		<div class="offset-1"></div>
+		<div class="col-10">
+			<input class="form-control max" type="text" placeholder="検索..."
+				aria-label="検索...">
+		</div>
+		<div class="col-1">
+			<button type="submit" class="btn btn-outline-success">検索</button>
+		</div>
+	</form>
+	<br>
+	<div class="container">
+		<h2 class="mx-auto" style="width: 350px;">商品のレビューを書く</h2>
+		<form action="">
+			<div class="form-group">
+				<label for="stars">星の数</label> <select>
+					<option value="1/5">1/5</option>
+					<option value="2/5">2/5</option>
+					<option value="3/5">3/5</option>
+					<option value="4/5">4/5</option>
+					<option value="5/5">5/5</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="reviewcomment">コメント：必須</label> <small class="text-muted">不適切なコメントの場合削除される場合があります。</small>
+				<textarea class="form-control" id="reviewcomment" rows="3"
+					placeholder="コメントを書いてください(更新の場合は初期値で与える)" required></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">書き込みor更新</button>
+		</form>
+	</div>
+	<footer class="footer mt-auto py-3">
+		<div class="container">
+			<span class="text-muted"><a href=itemdetail.html>戻る(商品ページ)</a>
+				<a href=itemdetail.html>戻る(購入履歴)</a></span>
+		</div>
+	</footer>
+
+</body>
+</html>
