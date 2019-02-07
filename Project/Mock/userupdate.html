@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>〇〇さんのユーザ情報の更新</title>
+<!-- BootstrapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery読み込み -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="js/bootstrap.min.js"></script>
+<!-- 自分のcss読み込み -->
+<link href="css/rework.css" rel="stylesheet">
+<!-- ajaxzip3(郵便番号検索)のjs読み込み -->
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
+				</div>
+				<div class="navbar-link ml-auto">
+					ようこそ<a href="toppage.html">××さん</a>
+				</div>
+				<a class="navbar-link " href="cart.html">カート </a> <a
+					class="navbar-link " href="toppage.html">ログアウト</a>
+			</div>
+		</nav>
+	</header>
+	<br>
+	<form class="  form-row">
+		<div class="offset-1"></div>
+		<div class="col-10">
+			<input class="form-control max" type="text" placeholder="検索..."
+				aria-label="検索...">
+		</div>
+		<div class="col-1">
+			<button type="submit" class="btn btn-outline-success">検索</button>
+		</div>
+	</form>
+	<br>
+	<div class="container">
+		<h2 class="mx-auto" style="width: 350px;">ユーザ情報の更新</h2><br>
+		<div class="mx-auto" style="width: 400px;">
+		<form action="">
+			お名前(必須)<br>
+			姓<input type="text" name=familyname value="〇" placeholder="〇">
+			名<input type="text" name=firstname value="〇" placeholder="〇"><br>
+			メールアドレス(必須)<br>
+			<input type="text" name=address value="〇" placeholder="〇"><br>
+			郵便番号(必須)<br>
+			<!-- ▼郵便番号入力フィールド(3桁+4桁) -->
+			〒<input type="text" name="zip31" size="4" maxlength="3" value="〇" placeholder="〇"> － <input
+				type="text" name="zip32" size="5" maxlength="4" value="〇" placeholder="〇"
+				onKeyUp="AjaxZip3.zip2addr('zip31','zip32','pref31','addr31','addr31');"><br>
+			都道府県(必須)<br>
+			<!-- ▼住所入力フィールド(都道府県) -->
+			<input type="text" name="pref31" size="20" value="〇" placeholder="〇"><br> 市区町村(必須)<br>
+			<!-- ▼住所入力フィールド(都道府県以降の住所) -->
+			<input type="text" name="addr31" size="40" value="〇" placeholder="〇"><br> 番地(必須)<br>
+			<input type="text" name=address value="〇" placeholder="〇"><br> ビル、マンション、アパート名(任意)<br>
+			<input type="text" name=address value="〇" placeholder="〇"><br> 電話番号(必須)<br> <input
+				type="text" name=address value="〇" placeholder="〇"><br> カードの種類<br> <select>
+				<option value=""></option>
+				<option value="VISA">VISA</option>
+				<option value="MasterCard">MasterCard</option>
+				<option value="JCB">JCB</option>
+				<option value="American Express">American Express</option>
+				<option value="Diners Club">Diners Club</option></select><br>カード番号<br> <input type="text" name="zip31" size="4"
+				maxlength="4"> <input type="text" name="zip31" size="4"
+				maxlength="4"> <input type="text" name="zip31" size="4"
+				maxlength="4"> <input type="text" name="zip31" size="4"
+				maxlength="4" value="〇" placeholder="〇"><br> 有効期限<br> <input type="text"
+				name="zip31" size="2" maxlength="2"> / <input type="text"
+				name="zip31" size="2" maxlength="2"><br> セキュリティコード<br>
+			<input type="text" name="zip31" size="3" maxlength="3"><br>
+			パスワード<br>
+			 <input type="text" name=address><br>
+			パスワード(確認)<br>
+			 <input type="text" name=address><br><br>
+			 <a class="max" href="sellorderdetail.html"><button type="button"
+						class="btn btn-primary">更新</button></a><br>
+	<br>
+	</form>
+	</div>
+	</div>
+</body>
+</html>

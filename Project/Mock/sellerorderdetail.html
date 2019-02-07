@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>注文情報の確認</title>
+<title>2000/01/01〇〇さんの注文履歴</title>
 <!-- BootstrapのCSS読み込み -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery読み込み -->
@@ -14,8 +14,6 @@
 <script src="js/bootstrap.min.js"></script>
 <!-- 自分のcss読み込み -->
 <link href="css/rework.css" rel="stylesheet">
-<!-- フッターのcss読み込み -->
-<link href="css/sticky-footer.css" rel="stylesheet">
 </head>
 <body>
 	<header>
@@ -25,7 +23,7 @@
 					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
 				</div>
 				<div class="navbar-link ml-auto">
-					ようこそ<a href="toppage.html">〇〇さん</a>
+					ようこそ<a href="toppage.html">××さん</a>
 				</div>
 				<a class="navbar-link " href="cart.html">カート </a> <a
 					class="navbar-link " href="toppage.html">ログアウト</a>
@@ -33,7 +31,7 @@
 		</nav>
 	</header>
 	<br>
-	<form class="form-row">
+	<form class="  form-row">
 		<div class="offset-1"></div>
 		<div class="col-10">
 			<input class="form-control max" type="text" placeholder="検索..."
@@ -45,8 +43,7 @@
 	</form>
 	<br>
 	<div class="container">
-	<h2 class="mx-auto" style="width: 350px;">注文情報の確認</h2>
-	<form action="confirm.html">
+		<h2 class="mx-auto" style="width: 350px;">2000/01/01の確認</h2>
 	<table class="table">
 					<thead>
 						<tr>
@@ -54,7 +51,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<th scope="row">住所</th>
+							<th>住所</th>
 							<td>日本</td>
 						</tr>
 						<tr>
@@ -65,8 +62,13 @@
 							<th>電話番号</th>
 							<td>1234-567-890</td>
 						</tr>
+						<tr>
+							<th>注文ステータス</th>
+							<td>注文済</td>
+						</tr>
 					</tbody>
 				</table>
+				<a class="float-right"href="sellorderdetail.html"><button type="button" class="btn btn-primary">注文ステータスを「」に更新する</button></a>
 	<table class="table table-striped">
 			<thead>
 				<tr>
@@ -106,7 +108,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<a class="float-right" href="cart.html">カートの中身を変更する</a>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -125,7 +126,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<a class="float-right" href="cart.html">配送方法を変更する</a>
 	<table class="table table-striped">
 			<thead>
 				<tr>
@@ -144,7 +144,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<a class="float-right" href="cart.html">お支払い方法を変更する</a>
 	<table class="table table-striped">
 			<thead>
 				<tr>
@@ -163,8 +162,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="submit" class="btn btn-success max" value="注文を確定する">
-		</form>
 	</div>
 </body>
 </html>
