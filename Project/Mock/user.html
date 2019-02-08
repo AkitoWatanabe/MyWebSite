@@ -28,7 +28,7 @@
 					ようこそ<a href="toppage.html">〇〇さん</a>
 				</div>
 				<a class="navbar-link " href="cart.html">カート </a> <a
-					class="navbar-link " href="toppage.html">ログアウト</a>
+					class="navbar-link " href="logout.html">ログアウト</a>
 			</div>
 		</nav>
 	</header>
@@ -66,11 +66,34 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="userupdate.html"><button type="button"class="btn btn-primary float-right">登録情報の変更</button></a>
+		<a href="userupdate.html"><button type="button"class="btn btn-primary float-right">登録情報の変更</button></a><br>
+		<hr><br>
+		<h2 class="mx-auto" style="width: 350px;">〇〇さんの注文履歴</h2><br>
+	<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>注文日時</th>
+					<th>商品名</th>
+					<th>配送方法</th>
+					<th>配送ステータス</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>2000年01月01日</td>
+					<td>水素水</td>
+					<td>お急ぎ便</td>
+					<td>発送準備</td>
+					<td><a href="orderdetail.html"><button type="button"
+								class="btn btn-primary float-right">詳細</button></a></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<footer class="footer mt-auto py-3">
 		<div class="container">
-			<span class="text-muted"><a href=itemdetail.html>退会</a></span>
+			<span class="text-muted"><a href=userdelete.html>退会</a></span>
 		</div>
 	</footer>
 </body>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>商品在庫ページ</title>
+<!-- BootstrapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery読み込み -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="js/bootstrap.min.js"></script>
+<!-- 自分のcss読み込み -->
+<link href="css/rework.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
+				</div>
+				<div class="navbar-link ml-auto">
+					ようこそ<a href="toppage.html">××さん</a>
+				</div>
+				<a class="navbar-link " href="cart.html">カート </a> <a
+					class="navbar-link " href="toppage.html">ログアウト</a>
+			</div>
+		</nav>
+	</header>
+	<br>
+	<form class="  form-row">
+		<div class="offset-1"></div>
+		<div class="col-10">
+			<input class="form-control max" type="text" placeholder="検索..."
+				aria-label="検索...">
+		</div>
+		<div class="col-1">
+			<button type="submit" class="btn btn-outline-success">検索</button>
+		</div>
+	</form>
+	<br>
+	<div class="container">
+		<form action="seller.html">
+			<h1 class="mx-auto" style="width: 200px;">水素水</h1>
+			<br>
+			<div class="row">
+				<div class="col-6">
+					<div class="detailimgsize">
+						<img src="img/256668_xl.jpg" class="img-fluid img-thumbnail"
+							alt="水素水">
+					</div>
+					画像を追加する<br> <input type="file" class="form-control-file"
+						id="File">
+				</div>
+				<div class="col-6">
+					<div class="col-12">
+						商品名<input type="text" value="水素水" placeholder="水素水">
+					</div>
+					<div class="col-12">
+						販売者：<a href="">伊藤園</a>
+					</div>
+					<div class="col-12">
+						商品説明
+						<textarea class="form-control" id="exampleFormControlTextarea1"
+							rows="3" placeholder="水素が入った水です。">水素が入った水です。</textarea>
+					</div>
+					<div class="col-12">
+						値段
+						<del>100円</del>
+						1円<br>
+					</div>
+					<div class="col-12">
+						値段変更<input type="text" value="100" placeholder="100">円<br>
+					</div>
+					<div class="col-12">
+						割引<input type="text" value="99" placeholder="99">円引き<br>
+					</div>
+					<div class="col-12">
+						期間<input type="text" value="2000/01/01" placeholder="2000/01/01">～<input
+							type="text" value="2099/12/31" placeholder="2099/12/31">
+					</div>
+					<div class="col-12">表示在庫： あと99個</div>
+					<div class="col-12">実在庫： あと100個</div>
+					<div class="col-12">
+						追加<input type="number" name="num1" min="-500" max="500" value="0"
+							step="1" required>個<br> <small class="text-muted">注意：在庫を減らす場合表示在庫の数までしか減らすことができません。</small>
+					</div>
+					<div class="col-12">
+					在庫減少<input type="number" name="num1" min="-500" max="500" value="100"
+							step="1" required>個<br> <small class="text-muted">表示在庫が設定した数値を下回った場合商品ページに残り個数が表示され、販売者に設定されているメールアドレスへメールを送信(未実装)します。</small>
+							</div>
+				</div>
+				<div class="col-12">
+				<button type="submit" class="btn btn-success max">更新</button></div>
+				<a class="col-12" href="itemdelete.html"><button type="button"
+						class="btn btn-danger max">商品の削除</button></a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
