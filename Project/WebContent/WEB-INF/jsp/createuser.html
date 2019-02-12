@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新規会員登録</title>
+<!-- BootstrapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery読み込み -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="js/bootstrap.min.js"></script>
+<!-- 自分のcss読み込み -->
+<link href="css/rework.css" rel="stylesheet">
+<!-- ajaxzip3(郵便番号検索)のjs読み込み -->
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<!-- フッターのcss読み込み -->
+<link href="css/sticky-footer.css" rel="stylesheet">
+
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
+				</div>
+				<div class="navbar-link ml-auto">
+					ようこそ<a href="toppage.html">××さん</a>
+				</div>
+				<a class="navbar-link " href="cart.html">カート </a> <a
+					class="navbar-link " href="toppage.html">ログアウト</a>
+			</div>
+		</nav>
+	</header>
+	<br>
+	<form class="  form-row">
+		<div class="offset-1"></div>
+		<div class="col-10">
+			<input class="form-control max" type="text" placeholder="検索..."
+				aria-label="検索...">
+		</div>
+		<div class="col-1">
+			<button type="submit" class="btn btn-outline-success">検索</button>
+		</div>
+	</form>
+	<br>
+	<div class="container">
+		<h2 class="mx-auto" style="width: 250px;">新規会員登録</h2>
+		<div class="float-right">
+			アカウントをお持ちの方は<a href="login.html">こちら</a>
+		</div>
+		<form action=".html">
+			ユーザ名(必須)<br> <input type="text" name=address><br>
+			メールアドレス(必須)<br> <input type="text" name=address><br>
+			パスワード(必須)<br> <input type="text" name=address><br>
+			パスワード(確認)(必須)<br> <input type="text" name=address><br>
+			お名前(必須)<br> 姓<input type="text" name=familyname> 名<input
+				type="text" name=firstname><br> 郵便番号(必須)<br>
+			<!-- ▼郵便番号入力フィールド(3桁+4桁) -->
+			〒<input type="text" name="zip31" size="4" maxlength="3"> － <input
+				type="text" name="zip32" size="5" maxlength="4"
+				onKeyUp="AjaxZip3.zip2addr('zip31','zip32','pref31','addr31','addr31');"><br>
+			都道府県(必須)<br>
+			<!-- ▼住所入力フィールド(都道府県) -->
+			<input type="text" name="pref31" size="20"><br> 市区町村(必須)<br>
+			<!-- ▼住所入力フィールド(都道府県以降の住所) -->
+			<input type="text" name="addr31" size="40"><br> 番地(必須)<br>
+			<input type="text" name=address><br> ビル、マンション、アパート名(任意)<br>
+			<input type="text" name=address><br> 電話番号(必須)<br> <input
+				type="text" name=address><br> <br> <br> <input
+				type="submit" class="btn btn-success max" value="入力情報を確認する">
+		</form>
+	</div>
+	<footer class="footer mt-auto py-3">
+			<div class="container">
+				<div class="float-right">
+					<span class="text-muted"> 販売者向けは<a href="createseller.html">こちら</a></span>
+				</div>
+			</div>
+		</footer>
+</body>
+</html>

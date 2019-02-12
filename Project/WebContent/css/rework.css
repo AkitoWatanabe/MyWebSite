@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.max{
+	resize: none;
+	width: 100%;
+	 box-sizing: border-box;
+}
+.tableimgsize{
+	max-height: 150px;
+	max-width: 150px;
+}
+.detailimgsize{
+	max-height: 400px;
+	max-width: 400px;
+}
+.boxgap{
+	margin-bottom:10px;
+	margin-top:10px;
+}
+.alert{
+	color: #ff0000;
+}

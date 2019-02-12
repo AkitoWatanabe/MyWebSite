@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>××さんのマイページ</title>
+<!-- BootstrapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery読み込み -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="js/bootstrap.min.js"></script>
+<!-- 自分のcss読み込み -->
+<link href="css/rework.css" rel="stylesheet">
+<!-- フッターのcss読み込み -->
+<link href="css/sticky-footer.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
+				</div>
+				<div class="navbar-link ml-auto">
+					ようこそ<a href="toppage.html">××さん</a>
+				</div>
+				<a class="navbar-link " href="cart.html">カート </a> <a
+					class="navbar-link " href="toppage.html">ログアウト</a>
+			</div>
+		</nav>
+	</header>
+	<br>
+	<form class="form-row">
+		<div class="offset-1"></div>
+		<div class="col-10">
+			<input class="form-control max" type="text" placeholder="検索..."
+				aria-label="検索...">
+		</div>
+		<div class="col-1">
+			<button type="submit" class="btn btn-outline-success">検索</button>
+		</div>
+	</form>
+	<br>
+	<h2 class="mx-auto" style="width: 400px;">××さんのマイページ</h2>
+	<div class="container">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>商品名</th>
+					<th>表示在庫</th>
+					<th>実在庫</th>
+					<th>値段</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><div class="tableimgsize">
+							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
+								class="img-fluid img-thumbnail" alt="水素水"></a>
+						</div></td>
+					<td><a href="itemdetail.html">水素水</a></td>
+					<td>9999個</td>
+					<td>10000個</td>
+					<td><del>100円</del> 1円</td>
+					<td><a href="selleritemdetail.html"><button type="button"
+								class="btn btn-primary float-right">編集</button></a></td>
+				</tr>
+				<tr>
+					<td><div class="tableimgsize">
+							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
+								class="img-fluid img-thumbnail" alt="水素水"></a>
+						</div></td>
+					<td><a href="itemdetail.html">水素水</a></td>
+					<td>9999個</td>
+					<td>10000個</td>
+					<td><del>100円</del> 1円</td>
+					<td><a href="registeraddress.html"><button type="button"
+								class="btn btn-primary float-right">編集</button></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="newitem.html"><button type="button"
+				class="btn btn-success max">新規商品登録</button></a><br>
+		<br>
+		<h2 class="mx-auto" style="width: 200px;">注文履歴</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>注文日時</th>
+					<th>商品名</th>
+					<th>注文者</th>
+					<th>配送方法</th>
+					<th>配送ステータス</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>2000年01月01日</td>
+					<td>水素水</td>
+					<td>〇〇さん</td>
+					<td>お急ぎ便</td>
+					<td>発送準備</td>
+					<td><a href="sellerorderdetail.html"><button type="button"
+								class="btn btn-primary float-right">詳細</button></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="footer mt-auto py-3">
+		<div class="container">
+			<span class="text-muted"><a href=itemdetail.html>退会</a></span>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2000/01/01〇〇さんの注文詳細</title>
+<!-- BootstrapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery読み込み -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="js/bootstrap.min.js"></script>
+<!-- 自分のcss読み込み -->
+<link href="css/rework.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
+				</div>
+				<div class="navbar-link ml-auto">
+					ようこそ<a href="toppage.html">○○さん</a>
+				</div>
+				<a class="navbar-link " href="cart.html">カート </a> <a
+					class="navbar-link " href="toppage.html">ログアウト</a>
+			</div>
+		</nav>
+	</header>
+	<br>
+	<form class="  form-row">
+		<div class="offset-1"></div>
+		<div class="col-10">
+			<input class="form-control max" type="text" placeholder="検索..."
+				aria-label="検索...">
+		</div>
+		<div class="col-1">
+			<button type="submit" class="btn btn-outline-success">検索</button>
+		</div>
+	</form>
+	<br>
+	<div class="container">
+		<h2 class="mx-auto" style="width: 350px;">2000/01/01注文の確認</h2><br>
+		<a class="float-left"href="seller.html"><button type="button" class="btn btn-secondary">○○さんのマイページへ戻る</button></a><br><br>
+	<table class="table">
+					<thead>
+						<tr>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>住所</th>
+							<td>日本</td>
+						</tr>
+						<tr>
+							<th>お名前</th>
+							<td>〇〇</td>
+						</tr>
+						<tr>
+							<th>電話番号</th>
+							<td>1234-567-890</td>
+						</tr>
+						<tr>
+							<th>注文ステータス</th>
+							<td>注文済</td>
+						</tr>
+					</tbody>
+				</table>
+	<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>商品名</th>
+					<th>個数</th>
+					<th>金額</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><div class="tableimgsize">
+							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
+								class="img-fluid img-thumbnail" alt="水素水"></a>
+						</div></td>
+					<td><a href="itemdetail.html">水素水</a></td>
+					<td>1個</td>
+					<td><del>１００円</del> 1円</td>
+				</tr>
+				<tr>
+					<td><div class="tableimgsize">
+							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
+								class="img-fluid img-thumbnail" alt="水素水"></a>
+						</div></td>
+					<td><a href="itemdetail.html">水素水</a></td>
+					<td>1個</td>
+					<td><del>１００円</del> 1円</td>
+				</tr>
+				<tr>
+					<td><div class="tableimgsize">
+							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
+								class="img-fluid img-thumbnail" alt="水素水"></a>
+						</div></td>
+					<td><a href="itemdetail.html">水素水</a></td>
+					<td>1個</td>
+					<td><del>１００円</del> 1円</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>配送方法</th>
+					<th></th>
+					<th>金額</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td>お急ぎ便</td>
+					<td></td>
+					<td>864円</td>
+				</tr>
+			</tbody>
+		</table>
+	<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>支払い方法</th>
+					<th></th>
+					<th>手数料</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td>代金引換</td>
+					<td></td>
+					<td>324円</td>
+				</tr>
+			</tbody>
+		</table>
+	<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>合計金額</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>1191円</td>
+				</tr>
+			</tbody>
+		</table>
+			<a class="float-right"href="cancel.html"><button type="button" class="btn btn-danger">注文をキャンセルする</button></a><br><br>
+
+	</div>
+</body>
+</html>
