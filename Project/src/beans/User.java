@@ -11,12 +11,19 @@ public class User {
 	private String user_address;
 	private int user_phone_number;
 	private int user_card;
+	private int classification_id;
 
-	public User(String user_id_name, String user_password) {
+	public User(String user_id_name, int classification_id) {
 		this.user_id_name = user_id_name;
-		this.user_password = user_password;
+		this.classification_id = classification_id;
 	}
 
+	public int getClassification_id() {
+		return classification_id;
+	}
+	public void setClassification_id(int classification_id) {
+		this.classification_id = classification_id;
+	}
 	public int getUser_id() {
 		return user_id;
 	}

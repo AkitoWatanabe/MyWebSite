@@ -9,8 +9,15 @@ public class Temp_user {
 	private String temp_user_address;
 	private int temp_user_phone_number;
 	private int temp_user_card;
+	private int classification_id;
 
 
+	public int getClassification_id() {
+		return classification_id;
+	}
+	public void setClassification_id(int classification_id) {
+		this.classification_id = classification_id;
+	}
 	public int getTemp_user_id() {
 		return temp_user_id;
 	}

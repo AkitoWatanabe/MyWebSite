@@ -9,8 +9,20 @@ public class Seller {
 	private int seller_post_code;
 	private String seller_address;
 	private int seller_phone_number;
+	private int classification_id;
 
 
+	public Seller(String seller_id_name, int classification_id) {
+		this.seller_id_name = seller_id_name;
+		this.classification_id = classification_id;
+	}
+
+	public int getClassification_id() {
+		return classification_id;
+	}
+	public void setClassification_id(int classification_id) {
+		this.classification_id = classification_id;
+	}
 	public int getSeller_id() {
 		return seller_id;
 	}

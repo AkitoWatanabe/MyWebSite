@@ -47,10 +47,11 @@
 	<div class="offset-4"></div>
 	<div class="offset-4"></div>
 	<div class="col-4">
-	パスワード<br> <input type="text" name=password required>
+	パスワード<br> <input type="password" name=password required>
 	</div>
 	<div class="offset-4"></div>
 	<br><br>
+	<input type="hidden" name="url" value="test">
 	<input type="submit" class="btn btn-success max boxgap" value="ログイン">
 	</form>
 	</div>
