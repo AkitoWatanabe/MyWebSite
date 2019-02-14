@@ -13,16 +13,16 @@ import dao.SellerDAO;
 import dao.UserDAO;
 
 /**
- * Servlet implementation class Createuser
+ * Servlet implementation class Createseller
  */
-@WebServlet("/Createuser")
-public class Createuser extends HttpServlet {
+@WebServlet("/Createseller")
+public class Createseller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Createuser() {
+    public Createseller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class Createuser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createuser.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createseller.jsp");
         dispatcher.forward(request, response);
 	}
 
@@ -45,7 +45,7 @@ public class Createuser extends HttpServlet {
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 
-		String userIdName = request.getParameter("userIdName");
+		String sellerIdName = request.getParameter("sellerIdName");
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		String spellCheck = request.getParameter("spellCheck");
@@ -54,7 +54,7 @@ public class Createuser extends HttpServlet {
 		StringBuffer buf = new StringBuffer();
 		buf.append(familyName);
 		buf.append(firstName);
-		String userName = buf.toString();
+		String sellerName = buf.toString();
 		String zip31 = request.getParameter("zip31");
 		String zip32 = request.getParameter("zip32");
 		buf.setLength(0);
@@ -78,7 +78,7 @@ public class Createuser extends HttpServlet {
 		if(!(password.equals(spellCheck))) {
 			request.setAttribute("errMsg", "パスワードをもう一度入力して下さい");
 			//入力内容をリクエストスコープにセット
-			request.setAttribute("userIdName", userIdName);
+			request.setAttribute("sellerIdName", sellerIdName);
 			request.setAttribute("mail", mail);
 			request.setAttribute("familyName", familyName);
 			request.setAttribute("firstName", firstName);
@@ -91,22 +91,22 @@ public class Createuser extends HttpServlet {
 			request.setAttribute("phone", phone);
 
 
-			// createuser.jspにフォワード
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createuser.jsp");
+			// createseller.jspにフォワード
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createseller.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
 		//ログインID被りチェック
-		UserDAO userDAO = new UserDAO();
-		String user = userDAO.findByLoginId(userIdName);
 		SellerDAO sellerDAO = new SellerDAO();
-		String seller = sellerDAO.findByLoginId(userIdName);
+		String seller = sellerDAO.findByLoginId(sellerIdName);
+		UserDAO userDAO = new UserDAO();
+		String user = userDAO.findByLoginId(sellerIdName);
 
-		if (user != null||seller != null) {
+		if (seller != null || user != null) {
 			// リクエストスコープにエラーメッセージをセット
 			request.setAttribute("errMsg", "入力されたログインIDは既に存在します");
 			//入力内容をリクエストスコープにセット
-			request.setAttribute("userIdName", userIdName);
+			request.setAttribute("sellerIdName", sellerIdName);
 			request.setAttribute("mail", mail);
 			request.setAttribute("familyName", familyName);
 			request.setAttribute("firstName", firstName);
@@ -118,19 +118,19 @@ public class Createuser extends HttpServlet {
 			request.setAttribute("addr33", addr33);
 			request.setAttribute("phone", phone);
 
-			// createuser.jspにフォワード
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createuser.jsp");
+			// createseller.jspにフォワード
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createseller.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		request.setAttribute("userIdName", userIdName);
+		request.setAttribute("sellerIdName", sellerIdName);
 		request.setAttribute("mail", mail);
 		request.setAttribute("password", password);
-		request.setAttribute("userName", userName);
+		request.setAttribute("sellerName", sellerName);
 		request.setAttribute("zipCode", zipCode);
 		request.setAttribute("address", address);
 		request.setAttribute("phone", phone);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createuserverify.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createsellerverify.jsp");
 		dispatcher.forward(request, response);
 
 

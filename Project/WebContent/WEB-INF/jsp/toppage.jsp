@@ -19,7 +19,7 @@
 </head>
 <body>
 	<header>
-	<jsp:include page="/baselayout/header.jsp" />
+		<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<br>
 	<h1 class="mx-auto" style="width: 170px;">ようこそ</h1><br>

@@ -49,7 +49,7 @@ public class UserDAO {
 	            }
 	        }
 	    }
-	//ログイン処理
+	//ID重複確認
 		public String findByLoginId(String user_id_name) {
 	        Connection conn = null;
 	        try {
@@ -87,5 +87,51 @@ public class UserDAO {
 	            }
 	        }
 	    }
+		//新規登録
+		public void setUserdata(String userIdName, String mail, String password, String userName, int zipCode,
+				String address, int phone) {
+			Connection conn = null;
+	        try {
+	            // データベースへ接続
+	            conn = DBManager.getConnection();
+
+	            // SELECT文を準備
+	            String sql = "insert into user ("
+	            		+ "user_id_name"
+	            		+ ",user_mail"
+	            		+ ",user_password"
+	            		+ ",user_name"
+	            		+ ",user_post_code"
+	            		+ ",user_address"
+	            		+ ",user_phone_number"
+	            		+ ",classification_id"
+	            		+ ")"
+	            		+ "values (?,?,?,?,?,?,?,1);";
+
+	            PreparedStatement pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, userIdName);
+	            pstmt.setString(2,mail);
+	            pstmt.setString(3, password);
+	            pstmt.setString(4, userName);
+	            pstmt.setInt(5,zipCode);
+	            pstmt.setString(6, address);
+	            pstmt.setInt(7, phone);
+	            pstmt.executeUpdate();
+
+	        } catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} finally {
+	            // データベース切断
+	            if (conn != null) {
+	                try {
+	                    conn.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+
+		}
 
 }

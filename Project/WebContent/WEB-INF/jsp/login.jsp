@@ -30,7 +30,7 @@
 	<div class="container">
 	<h2 class="mx-auto" style="width: 360px;">ユーザ名とパスワードを入力して下さい。</h2>
 		<div class="float-right">
-			新規登録は<a href="createuser.html">こちら</a>
+			新規登録は<a href="Createuser">こちら</a>
 		</div><br>
 		<div class="mx-auto" style="width: 360px;">
 		<c:if test="${errMsg != null}" >

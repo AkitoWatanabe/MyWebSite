@@ -19,3 +19,11 @@
 .alert{
 	color: #ff0000;
 }
+.boxhidden{
+	border-style: hidden;
+}
+.notspin{
+	-webkit-appearance: none;
+    margin: 0;
+    -moz-appearance:textfield;
+}

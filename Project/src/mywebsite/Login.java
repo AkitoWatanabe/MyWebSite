@@ -66,8 +66,8 @@ public class Login extends HttpServlet {
 			//ログイン画面を開いたページのアドレスを取得
 			//String url = request.getParameter("url");//getServletPath();
 			//入力されたパスワードの暗号化(新規登録実装後に解除)
-			//Encryption encryption = new Encryption();
-			//password = encryption.getEncryption(password);
+			Encryption encryption = new Encryption();
+			password = encryption.getEncryption(password);
 
 			UserDAO userDAO = new UserDAO();
 			User user = userDAO.findByLoginInfo(userIdName, password);

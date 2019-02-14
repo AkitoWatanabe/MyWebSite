@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.User;
-
 /**
- * Servlet implementation class Logout
+ * Servlet implementation class Seller
  */
-@WebServlet("/Logout")
-public class Logout extends HttpServlet {
+@WebServlet("/Seller")
+public class Seller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Logout() {
+    public Seller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +32,17 @@ public class Logout extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		// ログインセッションがない場合、トップ画面にリダイレクトさせる
-				HttpSession session = request.getSession();
-				User checkSession = (User)session.getAttribute("userInfo");
-				if(checkSession == null) {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
-					dispatcher.forward(request, response);
-				}else {
-					session.removeAttribute("userInfo");
+		HttpSession session = request.getSession();
+		User checkSession = (User)session.getAttribute("userInfo");
+		if(checkSession == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
+			dispatcher.forward(request, response);
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/seller.jsp");
 
-					// ログアウト完了の案内
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/logout.jsp");
-					dispatcher.forward(request, response);
-				}
+	        dispatcher.forward(request, response);
+		}
+
 	}
 
 	/**

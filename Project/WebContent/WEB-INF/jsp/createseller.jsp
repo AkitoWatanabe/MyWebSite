@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>新規一般会員登録</title>
+<title>新規会員登録</title>
 <!-- BootstrapのCSS読み込み -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery読み込み -->
@@ -27,7 +27,7 @@
 	<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<div class="container">
-		<h2 class="mx-auto" style="width: 260px;">新規一般会員登録</h2>
+		<h2 class="mx-auto" style="width: 250px;">新規販売者登録</h2>
 		<div class="float-right">
 			アカウントをお持ちの方は<a href="Login">こちら</a>
 		</div>
@@ -37,8 +37,8 @@
 				  ${errMsg}
 				</div>
 			</c:if>
-		<form action="Createuser"method="post">
-			ユーザ名(必須)<br> <input type="text" name=userIdName required value=<c:if test="${userIdName != null}" >${userIdName}</c:if>><br>
+		<form action="Createseller"method="post">
+			ユーザ名(必須)<br> <input type="text" name=sellerIdName required value=<c:if test="${sellerIdName != null}" >${sellerIdName}</c:if>><br>
 			メールアドレス(必須)<br> <input type="text" name=mail required value=<c:if test="${mail != null}" >${mail}</c:if>><br>
 			パスワード(必須)<br> <input type="password" name=password required><br>
 			パスワード(確認)(必須)<br> <input type="password" name=spellCheck required><br>
@@ -132,7 +132,7 @@
 	<footer class="footer mt-auto py-3">
 			<div class="container">
 				<div class="float-right">
-					<span class="text-muted"> 販売者の方は<a href="Createseller">こちら</a></span>
+					<span class="text-muted"> 一般の方は<a href="Createuser">こちら</a></span>
 				</div>
 			</div>
 		</footer>

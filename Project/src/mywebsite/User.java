@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.User;
-
 /**
- * Servlet implementation class Logout
+ * Servlet implementation class User
  */
-@WebServlet("/Logout")
-public class Logout extends HttpServlet {
+@WebServlet("/User")
+public class User extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Logout() {
+    public User() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,12 +38,14 @@ public class Logout extends HttpServlet {
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 					dispatcher.forward(request, response);
 				}else {
-					session.removeAttribute("userInfo");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user.jsp");
 
-					// ログアウト完了の案内
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/logout.jsp");
-					dispatcher.forward(request, response);
+			        dispatcher.forward(request, response);
 				}
+
+
+
+
 	}
 
 	/**
