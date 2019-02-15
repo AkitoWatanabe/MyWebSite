@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Seller;
+import beans.LoginInfo;
 import dao.SellerDAO;
 
 /**
@@ -64,8 +64,8 @@ public class Createsellerverify extends HttpServlet {
 		sellerDAO.setSellerdata(sellerIdName,mail,password,sellerName,zipCode,address,phone);
 		//ついでにログイン処理を済ませる
         int classificationId = 3;
-        Seller seller = new Seller(sellerIdName, classificationId);
-		request.setAttribute("seller_id_name", sellerIdName);
+        LoginInfo seller = new LoginInfo(sellerIdName, classificationId);
+		request.setAttribute("id_name", sellerIdName);
 		request.setAttribute("password", password);
 		// セッションにユーザの情報をセット
 		HttpSession session = request.getSession();

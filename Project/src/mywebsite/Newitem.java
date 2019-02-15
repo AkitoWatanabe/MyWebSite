@@ -13,16 +13,16 @@ import javax.servlet.http.HttpSession;
 import beans.LoginInfo;
 
 /**
- * Servlet implementation class Logout
+ * Servlet implementation class Newitem
  */
-@WebServlet("/Logout")
-public class Logout extends HttpServlet {
+@WebServlet("/Newitem")
+public class Newitem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Logout() {
+    public Newitem() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,11 +40,9 @@ public class Logout extends HttpServlet {
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 					dispatcher.forward(request, response);
 				}else {
-					session.removeAttribute("userInfo");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/newitem.jsp");
 
-					// ログアウト完了の案内
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/logout.jsp");
-					dispatcher.forward(request, response);
+			        dispatcher.forward(request, response);
 				}
 	}
 
@@ -54,6 +52,24 @@ public class Logout extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+			//ファイルアップロードを同時に行うとgetparameterで取れなくなる
+			/*
+			String img = request.getParameter("img");
+			String itemName = request.getParameter("itemname");
+			String itemDetail = request.getParameter("itemdetail");
+			String price = request.getParameter("price");
+			String salePrice = request.getParameter("sale_price");
+			String saleStartDate = request.getParameter("sale_start_date");
+			String saleStartTime = request.getParameter("sale_start_time");
+			String saleEndDate = request.getParameter("sale_end_date");
+			String saleEndTime = request.getParameter("sale_end_time");
+			String stock = request.getParameter("stock");
+			String unit = request.getParameter("unit");
+			String stockArart = request.getParameter("stock_arart");
+			*/
+
+
 	}
 
 }

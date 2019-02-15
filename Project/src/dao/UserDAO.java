@@ -6,18 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import base.DBManager;
-import beans.User;
+import beans.LoginInfo;
 
 public class UserDAO {
 	//ログイン処理
-	public User findByLoginInfo(String user_id_name, String password) {
+	public LoginInfo findByLoginInfo(String user_id_name, String password) {
 		Connection conn = null;
 	        try {
 	            // データベースへ接続
 	            conn = DBManager.getConnection();
 
 	            // SELECT文を準備
-	            String sql = "SELECT * FROM user WHERE user_id_name = ? and user_password = ? ";
+	            String sql = "SELECT * FROM user WHERE id_name = ? and user_password = ? ";
 
 	             // SELECTを実行し、結果表を取得
 	            PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -30,9 +30,9 @@ public class UserDAO {
 	                return null;
 	            }
 
-	            String userIdName = rs.getString("user_id_name");
+	            String userIdName = rs.getString("id_name");
 	            int classificationId = rs.getInt("classification_id");
-	            return new User(userIdName, classificationId);
+	            return new LoginInfo(userIdName, classificationId);
 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -57,7 +57,7 @@ public class UserDAO {
 	            conn = DBManager.getConnection();
 
 	            // SELECT文を準備
-	            String sql = "SELECT * FROM user WHERE user_id_name = ?";
+	            String sql = "SELECT * FROM user WHERE id_name = ?";
 
 	             // SELECTを実行し、結果表を取得
 	            PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -69,7 +69,7 @@ public class UserDAO {
 	                return null;
 	            }
 
-	            String userIdName = rs.getString("user_id_name");
+	            String userIdName = rs.getString("id_name");
 	            return userIdName;
 
 	        } catch (SQLException e) {
@@ -97,7 +97,7 @@ public class UserDAO {
 
 	            // SELECT文を準備
 	            String sql = "insert into user ("
-	            		+ "user_id_name"
+	            		+ "id_name"
 	            		+ ",user_mail"
 	            		+ ",user_password"
 	            		+ ",user_name"
@@ -132,6 +132,35 @@ public class UserDAO {
 	            }
 	        }
 
+		}
+		//ユーザ削除
+		public LoginInfo deleteUser(String id_name) {
+			Connection conn = null;
+	        try {
+	            // データベースへ接続
+	            conn = DBManager.getConnection();
+
+	            // SELECT文を準備
+	            String sql = "delete from user where id_name = ?;";
+
+	            PreparedStatement pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, id_name);
+	            pstmt.executeUpdate();
+
+	        } catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} finally {
+	            // データベース切断
+	            if (conn != null) {
+	                try {
+	                    conn.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+			return null;
 		}
 
 }

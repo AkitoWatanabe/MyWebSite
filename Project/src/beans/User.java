@@ -3,7 +3,7 @@ package beans;
 public class User {
 
 	private int user_id;
-	private String user_id_name;
+	private String id_name;
 	private String user_mail;
 	private String user_password;
 	private String user_name;
@@ -13,8 +13,8 @@ public class User {
 	private int user_card;
 	private int classification_id;
 
-	public User(String user_id_name, int classification_id) {
-		this.user_id_name = user_id_name;
+	public User(String id_name, int classification_id) {
+		this.id_name = id_name;
 		this.classification_id = classification_id;
 	}
 
@@ -30,11 +30,11 @@ public class User {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	public String getUser_id_name() {
-		return user_id_name;
+	public String getId_name() {
+		return id_name;
 	}
-	public void setUser_id_name(String user_id_name) {
-		this.user_id_name = user_id_name;
+	public void setId_name(String user_id_name) {
+		this.id_name = id_name;
 	}
 	public String getUser_mail() {
 		return user_mail;

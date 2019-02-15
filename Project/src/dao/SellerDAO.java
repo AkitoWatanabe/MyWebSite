@@ -6,18 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import base.DBManager;
-import beans.Seller;
+import beans.LoginInfo;
 
 public class SellerDAO {
 	//ログイン処理
-	public Seller findByLoginInfo(String seller_id_name, String password) {
+	public LoginInfo findByLoginInfo(String seller_id_name, String password) {
         Connection conn = null;
         try {
             // データベースへ接続
             conn = DBManager.getConnection();
 
             // SELECT文を準備
-            String sql = "SELECT * FROM seller WHERE seller_id_name = ? and seller_password = ? ";
+            String sql = "SELECT * FROM seller WHERE id_name = ? and seller_password = ? ";
 
              // SELECTを実行し、結果表を取得
             PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -30,9 +30,10 @@ public class SellerDAO {
                 return null;
             }
 
-            String sellerIdName = rs.getString("seller_id_name");
+            String sellerIdName = rs.getString("id_name");
             int classificationId = rs.getInt("classification_id");
-            return new Seller(sellerIdName, classificationId);
+
+            return new LoginInfo(sellerIdName, classificationId);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,7 +58,7 @@ public class SellerDAO {
             conn = DBManager.getConnection();
 
             // SELECT文を準備
-            String sql = "SELECT * FROM seller WHERE seller_id_name = ?";
+            String sql = "SELECT * FROM seller WHERE id_name = ?";
 
              // SELECTを実行し、結果表を取得
             PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -69,7 +70,7 @@ public class SellerDAO {
                 return null;
             }
 
-            String sellerIdName = rs.getString("seller_id_name");
+            String sellerIdName = rs.getString("id_name");
             return sellerIdName;
 
         } catch (SQLException e) {
@@ -97,7 +98,7 @@ public class SellerDAO {
 
             // SELECT文を準備
             String sql = "insert into seller ("
-            		+ "seller_id_name"
+            		+ "id_name"
             		+ ",seller_mail"
             		+ ",seller_password"
             		+ ",seller_name"
@@ -133,5 +134,34 @@ public class SellerDAO {
         }
 
 	}
+	//ユーザ削除
+		public LoginInfo deleteUser(String id_name) {
+			Connection conn = null;
+	        try {
+	            // データベースへ接続
+	            conn = DBManager.getConnection();
+
+	            // SELECT文を準備
+	            String sql = "delete from seller where id_name = ?;";
+
+	            PreparedStatement pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, id_name);
+	            pstmt.executeUpdate();
+
+	        } catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} finally {
+	            // データベース切断
+	            if (conn != null) {
+	                try {
+	                    conn.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+			return null;
+		}
 
 }

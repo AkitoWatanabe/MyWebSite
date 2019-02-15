@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.User;
+import beans.LoginInfo;
 import dao.UserDAO;
 
 /**
@@ -64,8 +64,8 @@ public class Createuserverify extends HttpServlet {
 		userDAO.setUserdata(userIdName,mail,password,userName,zipCode,address,phone);
 		//ついでにログイン処理を済ませる
         int classificationId = 1;
-        User user = new User(userIdName, classificationId);
-		request.setAttribute("user_id_name", userIdName);
+        LoginInfo user = new LoginInfo(userIdName, classificationId);
+		request.setAttribute("id_name", userIdName);
 		request.setAttribute("password", password);
 		// セッションにユーザの情報をセット
 		HttpSession session = request.getSession();

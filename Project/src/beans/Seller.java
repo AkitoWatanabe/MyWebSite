@@ -2,7 +2,7 @@ package beans;
 
 public class Seller {
 	private int seller_id;
-	private String seller_id_name;
+	private String id_name;
 	private String seller_mail;
 	private String seller_password;
 	private String seller_name;
@@ -12,8 +12,8 @@ public class Seller {
 	private int classification_id;
 
 
-	public Seller(String seller_id_name, int classification_id) {
-		this.seller_id_name = seller_id_name;
+	public Seller(String id_name, int classification_id) {
+		this.id_name = id_name;
 		this.classification_id = classification_id;
 	}
 
@@ -29,11 +29,11 @@ public class Seller {
 	public void setSeller_id(int seller_id) {
 		this.seller_id = seller_id;
 	}
-	public String getSeller_id_name() {
-		return seller_id_name;
+	public String getId_name() {
+		return id_name;
 	}
-	public void setSeller_id_name(String seller_id_name) {
-		this.seller_id_name = seller_id_name;
+	public void setId_name(String seller_id_name) {
+		this.id_name = id_name;
 	}
 	public String getSeller_mail() {
 		return seller_mail;

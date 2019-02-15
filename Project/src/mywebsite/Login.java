@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Seller;
+import beans.LoginInfo;
 import beans.User;
 import dao.SellerDAO;
 import dao.UserDAO;
@@ -59,9 +59,9 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		 request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 
-	        String userIdName = request.getParameter("user_id_name");
+	        String userIdName = request.getParameter("id_name");
 			String password = request.getParameter("password");
 			//ログイン画面を開いたページのアドレスを取得
 			//String url = request.getParameter("url");//getServletPath();
@@ -70,9 +70,9 @@ public class Login extends HttpServlet {
 			password = encryption.getEncryption(password);
 
 			UserDAO userDAO = new UserDAO();
-			User user = userDAO.findByLoginInfo(userIdName, password);
+			LoginInfo user = userDAO.findByLoginInfo(userIdName, password);
 			SellerDAO sellerDAO = new SellerDAO();
-			Seller seller = sellerDAO.findByLoginInfo(userIdName, password);
+			LoginInfo seller = sellerDAO.findByLoginInfo(userIdName, password);
 			System.out.println(user);
 			System.out.println(seller);
 
@@ -90,7 +90,7 @@ public class Login extends HttpServlet {
 					// セッションにユーザの情報をセット
 					HttpSession session = request.getSession();
 					session.setAttribute("userInfo", user);
-					System.out.println(user.getUser_id_name());
+					System.out.println(user.getId_name());
 					System.out.println(user.getClassification_id());
 					//ログイン画面を開いたページにリダイレクト(未実装)
 					response.sendRedirect("Toppage");
@@ -98,7 +98,7 @@ public class Login extends HttpServlet {
 					// セッションにユーザの情報をセット
 					HttpSession session = request.getSession();
 					session.setAttribute("userInfo", seller);
-					System.out.println(seller.getSeller_id_name());
+					System.out.println(seller.getId_name());
 					System.out.println(seller.getClassification_id());
 					//ログイン画面を開いたページにリダイレクト(未実装)
 					response.sendRedirect("Toppage");

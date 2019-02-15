@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>〇〇さんのマイページ</title>
+<title>${userInfo.id_name}さんのマイページ</title>
 <!-- BootstrapのCSS読み込み -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery読み込み -->
@@ -25,13 +25,13 @@ pageEncoding="UTF-8"%>
 		<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<br>
-	<h2 class="mx-auto" style="width: 400px;">${userInfo.user_id_name}さんのマイページ</h2>
+	<h2 class="mx-auto" style="width: 400px;">${userInfo.id_name}さんのマイページ</h2>
 	<div class="container">
 		<table class="table table-striped">
 			<tbody>
 				<tr>
 					<td>ユーザ名</td>
-					<td>${userInfo.user_id_name}</td>
+					<td>${userInfo.id_name}</td>
 				</tr>
 				<tr>
 					<td>メールアドレス</td>
@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
 		</table>
 		<a href="Userupdate"><button type="button"class="btn btn-primary float-right">登録情報の変更</button></a><br>
 		<hr><br>
-		<h2 class="mx-auto" style="width: 350px;">${userInfo.user_id_name}さんの注文履歴</h2><br>
+		<h2 class="mx-auto" style="width: 350px;">${userInfo.id_name}さんの注文履歴</h2><br>
 	<table class="table table-striped">
 			<thead>
 				<tr>
@@ -74,7 +74,7 @@ pageEncoding="UTF-8"%>
 	</div>
 	<footer class="footer mt-auto py-3">
 		<div class="container">
-			<span class="text-muted"><a href=userdelete.html>退会</a></span>
+			<span class="text-muted"><a href=Userdelete>退会</a></span>
 		</div>
 	</footer>
 </body>

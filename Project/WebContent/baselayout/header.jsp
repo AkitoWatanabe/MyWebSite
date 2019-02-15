@@ -16,12 +16,12 @@ pageEncoding="UTF-8"%>
 			<div class="navbar-link ml-auto">
 			<c:choose>
 				<c:when test="${userInfo.classification_id == 1}">
-					ようこそ<a href="User">${userInfo.user_id_name}</a>さん
+					ようこそ<a href="Userpage">${userInfo.id_name}</a>さん
 					/<a class="navbar-link" href="cart.html">カート</a>
 					/<a class="navbar-link" href="Logout">ログアウト</a>
 				</c:when>
 				<c:when test="${userInfo.classification_id == 3}">
-					ようこそ<a href="Seller">${userInfo.seller_id_name}</a>さん
+					ようこそ<a href="Sellerpage">${userInfo.id_name}</a>さん
 					/<a class="navbar-link" href="Logout">ログアウト</a>
 				</c:when>
 				<c:otherwise>

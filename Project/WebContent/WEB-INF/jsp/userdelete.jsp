@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -22,41 +24,19 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
-				</div>
-				<div class="navbar-link ml-auto">
-					ようこそ<a href="toppage.html">××さん</a>
-				</div>
-				<a class="navbar-link " href="cart.html">カート </a> <a
-					class="navbar-link " href="toppage.html">ログアウト</a>
-			</div>
-		</nav>
+		<jsp:include page="/baselayout/header.jsp" />
 	</header>
-	<br>
-	<form class="  form-row">
-		<div class="offset-1"></div>
-		<div class="col-10">
-			<input class="form-control max" type="text" placeholder="検索..."
-				aria-label="検索...">
-		</div>
-		<div class="col-1">
-			<button type="submit" class="btn btn-outline-success">検索</button>
-		</div>
-	</form>
 	<br>
 	<div class="container">
 		<h2 class="mx-auto" style="width: 360px;">本当に退会しますか？</h2>
 		<div class="row">
 			<div class="col-6">
-				<a href="user.html"><input type="button"
+				<a href="Userpage"><input type="button"
 					class="btn btn-secondary max boxgap" value="マイページへ移動"></a>
 			</div>
 			<div class="col-6">
-				<a href="toppage.html"><input type="button"
-					class="btn btn-danger max boxgap" value="退会する"></a>
+				<form action="Userdelete"method="post"><input type="submit"
+					class="btn btn-danger max boxgap" value="退会する"></form>
 			</div>
 		</div>
 	</div>

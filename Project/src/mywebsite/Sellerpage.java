@@ -10,17 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.LoginInfo;
+
 /**
- * Servlet implementation class User
+ * Servlet implementation class Seller
  */
-@WebServlet("/User")
-public class User extends HttpServlet {
+@WebServlet("/Sellerpage")
+public class Sellerpage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public User() {
+    public Sellerpage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +34,16 @@ public class User extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		// ログインセッションがない場合、トップ画面にリダイレクトさせる
-				HttpSession session = request.getSession();
-				User checkSession = (User)session.getAttribute("userInfo");
-				if(checkSession == null) {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
-					dispatcher.forward(request, response);
-				}else {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user.jsp");
+		HttpSession session = request.getSession();
+		LoginInfo checkSession = (LoginInfo)session.getAttribute("userInfo");
+		if(checkSession == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
+			dispatcher.forward(request, response);
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/sellerpage.jsp");
 
-			        dispatcher.forward(request, response);
-				}
-
-
-
+	        dispatcher.forward(request, response);
+		}
 
 	}
 

@@ -42,7 +42,7 @@
 	<form class="form-row"action="Login" method="post">
 	<div class="offset-4"></div>
 	<div class="col-4">
-	ユーザ名<br> <input type="text" name=user_id_name required>
+	ユーザ名<br> <input type="text" name=id_name required>
 	</div>
 	<div class="offset-4"></div>
 	<div class="offset-4"></div>

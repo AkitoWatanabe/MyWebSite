@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>××さんのマイページ</title>
+<title>${userInfo.id_name}さんのマイページ</title>
 <!-- BootstrapのCSS読み込み -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery読み込み -->
@@ -24,7 +24,7 @@
 		<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<br>
-	<h2 class="mx-auto" style="width: 400px;">${userInfo.seller_id_name}さんのマイページ</h2>
+	<h2 class="mx-auto" style="width: 400px;">${userInfo.id_name}さんのマイページ</h2>
 	<div class="container">
 		<table class="table table-striped">
 			<thead>
@@ -64,7 +64,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="newitem.html"><button type="button"
+		<a href="Newitem"><button type="button"
 				class="btn btn-success max">新規商品登録</button></a><br>
 		<br>
 		<h2 class="mx-auto" style="width: 200px;">注文履歴</h2>
@@ -94,7 +94,7 @@
 	</div>
 	<footer class="footer mt-auto py-3">
 		<div class="container">
-			<span class="text-muted"><a href=itemdetail.html>退会</a></span>
+			<span class="text-muted"><a href=Userdelete>退会</a></span>
 		</div>
 	</footer>
 </body>

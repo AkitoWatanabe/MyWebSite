@@ -24,6 +24,7 @@
 </head>
 <body>
 	<header>
+		<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<br>
 	<div class="container">
