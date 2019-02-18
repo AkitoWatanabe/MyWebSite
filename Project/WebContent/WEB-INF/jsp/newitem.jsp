@@ -64,7 +64,7 @@
 						<div class="detailimgsize">
 							<img src="img/noimage.png" class="img-fluid img-thumbnail imgView">
 						</div>
-					画像を追加する<br> <input type="file" class="form-control-file"name="img"id="File"accept="image/*">
+					画像を追加する<br> <input type="file" class="form-control-file"name="img"accept="image/*">
 					</div>
 				</div>
 				<div class="col-6">
