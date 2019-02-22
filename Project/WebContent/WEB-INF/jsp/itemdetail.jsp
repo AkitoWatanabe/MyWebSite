@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,58 +19,37 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
-				</div>
-				<div class="navbar-link ml-auto">
-					ようこそ<a href="toppage.html">〇〇さん</a>
-				</div>
-				<a class="navbar-link " href="cart.html">カート </a> <a
-					class="navbar-link " href="toppage.html">ログアウト</a>
-			</div>
-		</nav>
+		<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<br>
-	<form class="  form-row">
-		<div class="offset-1"></div>
-		<div class="col-10">
-			<input class="form-control max" type="text" placeholder="検索..."
-				aria-label="検索...">
-		</div>
-		<div class="col-1">
-			<button type="submit" class="btn btn-outline-success">検索</button>
-		</div>
-	</form>
-	<br>
 	<div class="container">
-		<h1 class="mx-auto" style="width: 200px;">水素水</h1>
+		<h1 class="mx-auto" style="width: 200px;">${item.item_name}</h1>
 		<br>
 		<div class="row">
 			<div class="detailimgsize">
-				<img src="img/256668_xl.jpg" class="img-fluid img-thumbnail col-6"
-					alt="水素水">
+				<img src="img/${item.file_name}" class="img-fluid img-thumbnail col-6"
+					alt="${item.item_name}">
 			</div>
 			<div class="row col-6">
-				<h2 class="col-6">水素水</h2>
+				<h2 class="col-6">${item.item_name}</h2>
 				<p class="col-6">
-					<a href="">伊藤園</a><br>2000年1月１日<br>に購入しました。
+					<a href="">${item.id_name}</a><br>2000年1月１日<br>に購入しました。
 				</p>
-				<p class="col-6">水素が入った水です。</p>
+				<p class="col-6">${item.item_detail}</p>
 				<p class="col-6">
-					<del>１００円</del>
-					1円
+					<del>${item.item_price}円</del>
+					円
 				</p>
 				<div class="offset-6"></div>
-				<form class="form-row col-6">
-					<select>
-						<option value="1個">1個</option>
-						<option value="2個">2個</option>
-						<option value="3個">3個</option>
+				<form class="form-row col-6" action="ItemAdd" method="post">
+					<select name="number">
+						<c:forEach var="i" begin="1" end="${item.surface_stock}" step="1" >
+							<option value="${i}">${i}${item.unit}</option>
+						</c:forEach>
 					</select>
+					<input type="hidden" name="item_id"value="${item.item_id}">
 					<button type="submit" class="btn btn-outline-success">カートに入れる</button>
-					<br> あと100個
+					<br> あと${item.surface_stock}${item.unit}
 				</form>
 			</div>
 		</div>

@@ -9,8 +9,8 @@ pageEncoding="UTF-8"%>
 			<div class="navbar-header">
 				<a class="navbar-brand" href="Toppage">toppage.jp</a>
 			</div>
-			<form name = "seachitem" class="form-inline" action="">
-				<input class="form-control max" type="text" placeholder="商品検索">
+			<form name = "search_item" class="form-inline" action="Itemsearchresult">
+				<input class="form-control max" name="search_word" type="text" placeholder="商品検索">
 				<button type="submit" class="btn btn-outline-success">検索</button>
 			</form>
 			<div class="navbar-link ml-auto">

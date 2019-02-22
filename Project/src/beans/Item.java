@@ -1,21 +1,60 @@
 package beans;
 
-import java.sql.Date;
-
 public class Item {
 	private int item_id;
 	private String item_name;
 	private int item_price;
 	private int sale_price;
-	private Date sale_start;
-	private Date sale_end;
+	private String sale_start;
+	private String sale_end;
 	private int surface_stock;
 	private int real_stock;
-	private String seller_id;
+	private int stock_arart;
+	private String unit;
+	private int seller_id;
 	private String item_detail;
 	private String file_name;
+	//seller
+	private String id_name;
 
 
+
+	public Item(int item_id, String file_name, String item_name, int surface_stock, int real_stock, int item_price,
+			int sale_price, String sale_start, String sale_end, String unit, String item_detail, String id_name) {
+		this.item_id = item_id;
+		this.file_name = file_name;
+		this.item_name = item_name;
+		this.surface_stock = surface_stock;
+		this.real_stock = real_stock;
+		this.item_price = item_price;
+		this.sale_price = sale_price;
+		this.sale_start = sale_start;
+		this.sale_end = sale_end;
+		this.unit = unit;
+		this.item_detail = item_detail;
+		this.id_name = id_name;
+	}
+	public Item() {
+	}
+
+	public String getId_name() {
+		return id_name;
+	}
+	public void setId_name(String id_name) {
+		this.id_name = id_name;
+	}
+	public int getStock_arart() {
+		return stock_arart;
+	}
+	public void setStock_arart(int stock_arart) {
+		this.stock_arart = stock_arart;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
 	public int getItem_id() {
 		return item_id;
 	}
@@ -40,16 +79,16 @@ public class Item {
 	public void setSale_price(int sale_price) {
 		this.sale_price = sale_price;
 	}
-	public Date getSale_start() {
+	public String getSale_start() {
 		return sale_start;
 	}
-	public void setSale_start(Date sale_start) {
+	public void setSale_start(String sale_start) {
 		this.sale_start = sale_start;
 	}
-	public Date getSale_end() {
+	public String getSale_end() {
 		return sale_end;
 	}
-	public void setSale_end(Date sale_end) {
+	public void setSale_end(String sale_end) {
 		this.sale_end = sale_end;
 	}
 	public int getSurface_stock() {
@@ -64,10 +103,10 @@ public class Item {
 	public void setReal_stock(int real_stock) {
 		this.real_stock = real_stock;
 	}
-	public String getSeller_id() {
+	public int getSeller_id() {
 		return seller_id;
 	}
-	public void setSeller_id(String seller_id) {
+	public void setSeller_id(int seller_id) {
 		this.seller_id = seller_id;
 	}
 	public String getItem_detail() {

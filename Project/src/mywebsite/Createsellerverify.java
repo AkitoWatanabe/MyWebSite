@@ -63,10 +63,7 @@ public class Createsellerverify extends HttpServlet {
 		SellerDAO sellerDAO = new SellerDAO();
 		sellerDAO.setSellerdata(sellerIdName,mail,password,sellerName,zipCode,address,phone);
 		//ついでにログイン処理を済ませる
-        int classificationId = 3;
-        LoginInfo seller = new LoginInfo(sellerIdName, classificationId);
-		request.setAttribute("id_name", sellerIdName);
-		request.setAttribute("password", password);
+        LoginInfo seller = sellerDAO.findByLoginInfo(sellerIdName, password);
 		// セッションにユーザの情報をセット
 		HttpSession session = request.getSession();
 		session.setAttribute("userInfo", seller);

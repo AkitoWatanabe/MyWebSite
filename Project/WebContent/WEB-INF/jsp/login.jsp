@@ -34,10 +34,10 @@
 		</div><br>
 		<div class="mx-auto" style="width: 360px;">
 		<c:if test="${errMsg != null}" >
-	    <div class="alert">
-		  ${errMsg}
-		</div>
-	</c:if>
+	    	<div class="alert">
+		  		${errMsg}
+			</div>
+		</c:if>
 	</div>
 	<form class="form-row"action="Login" method="post">
 	<div class="offset-4"></div>

@@ -6,11 +6,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>新規商品登録</title>
+<title>商品在庫ページ</title>
 <!-- BootstrapのCSS読み込み -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery読み込み -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- BootstrapのJS読み込み -->
 <script src="js/bootstrap.min.js"></script>
 <!-- 自分のcss読み込み -->
@@ -55,8 +56,8 @@
 	</header>
 	<br>
 	<div class="container">
-		<form action="Newitem"method="post"enctype="multipart/form-data">
-			<h1 class="mx-auto" style="width: 250px;">新規商品登録</h1>
+		<form action="Selleritemdetail"method = "post"enctype="multipart/form-data">
+			<h1 class="mx-auto" style="width: 250px;">商品情報更新</h1>
 			<br>
 			<div class="mx-auto" style="width: 360px;">
 			<c:if test="${errMsg != null}" >
@@ -69,16 +70,16 @@
 				<div class="col-6">
 					<div class="imgInput">
 						<div class="detailimgsize">
-							<img src="C:\Users\LIKEIT_STUDENT\Documents\GitHub\MyWebSite\Project\WebContent\img/noimage.png" class="img-fluid img-thumbnail imgView">
+							<img src="img/${item.file_name}" class="img-fluid img-thumbnail imgView">
 						</div>
-					画像を追加する<br> <input type="file" class="form-control-file"name="img"accept="image/*">
+					画像を変更する<br> <input type="file" class="form-control-file"name="img"accept="image/*">
 					</div>
 				</div>
 				<div class="col-6">
 					<div class="col-12">
 						<div class="form-group">
 							<label>商品名：必須</label>
-							<input type="text"class="form-control"name="itemname" placeholder="商品名を入力して下さい" required value=<c:if test="${itemname != null}" >${itemname}</c:if>>
+							<input type="text"class="form-control"name="itemname" placeholder="${item.item_name}" required value="${item.item_name}">
 						</div>
 					</div>
 					<div class="col-12">
@@ -89,13 +90,13 @@
 					<div class="col-12">
 						<div class="form-group">
 							<label>商品説明：必須</label>
-							<textarea class="form-control" name="itemdetail"rows="3" placeholder="商品説明を入力して下さい。" required><c:if test="${itemdetail != null}" >${itemdetail}</c:if></textarea>
+							<textarea class="form-control" name="itemdetail"rows="3" placeholder="${item.item_detail}" required>${item.item_detail}</textarea>
 						</div>
 					</div>
 					<div class="col-12">
 						<div class="form-group">
 							<label>値段：必須</label>
-							<input type="number" name="price"min="0" placeholder="値段を入力して下さい" required value=<c:if test="${price != null}" >${price}</c:if>><label>円</label>
+							<input type="number" name="price"min="0" placeholder="${item.item_price}" required value="${item.item_price}"><label>円</label>
 						</div>
 					</div>
 					<div class="col-12">
@@ -104,7 +105,7 @@
   						<div class="card-body">
 						<div class="form-group">
 							<label>割引金額</label>
-							<input type="number"name="sale_price" min="0" placeholder="割引金額を入力して下さい"value=<c:if test="${sale_price != -1}" >${sale_price}</c:if>>円引き<br>
+							<input type="number"name="sale_price" min="0" placeholder="${item.sale_price}"value="<c:if test="${item.sale_price != 0}" >${item.sale_price}</c:if>">円引き<br>
 						</div>
 					<div class="col-12">
 						<div class="form-group">
@@ -124,27 +125,34 @@
 					</div>
 					<div class="col-12">
 						<div class="form-group">
-							<label>在庫：必須</label>
-							<input type="number" name="stock" min="0" max="99999" step="1" required value=<c:if test="${stock != null}" >${stock}</c:if>>
-							<input type="text" name="unit"size="2"  placeholder="　個" required value=<c:if test="${unit != null}" >${unit}</c:if>><br>
+							<label>在庫：必須</label><br>
+							<label>表示在庫：あと${item.surface_stock}${item.unit}</label><br>
+							<input type="hidden" name="surface_stock" value ="${item.surface_stock}">
+							<label>実在庫　：あと${item.real_stock}${item.unit}</label><br>
+							<input type="hidden" name="real_stock" value ="${item.real_stock}">
+							<label>追加</label>
+							<input type="number" name="add_stock" min="${ -1 * item.surface_stock}" step="1"value="0" required>
+							<label>${item.unit}</label><br>
 							<small class="text-muted">注意：在庫を減らす場合表示在庫の数までしか減らすことができません。</small>
 						</div>
 					</div>
 					<div class="col-12">
 						<div class="form-group">
 							<label>在庫減少：必須</label>
-							<input type="number" name="stock_arart" min="0" max="99999" step="1"value=<c:if test="${stock_arart != null}" >${stock_arart}</c:if> required>
-							<input type="text" size="2" placeholder="　個" required value=<c:if test="${unit != null}" >${unit}</c:if>><br>
+							<input type="number" name="stock_arart" min="0" step="1" placeholder="${item.stock_arart}" value ="${item.stock_arart}" required>
+							<label>${item.unit}</label><br>
 							<small class="text-muted">表示在庫が設定した数値を下回った場合商品ページに残り個数が表示され、販売者に設定されているメールアドレスへメールを送信(未実装)します。</small>
 						</div>
 					</div>
 				</div>
 				</div>
-				<a class="col-6" href="Sellerpage"><button type="button"class="btn btn-secondary max">キャンセル</button></a>
-				<div class="col-6"><input type="submit"class="btn btn-success max"value="新規登録"></div>
+				<input type="hidden" name="item_id" value ="${item.item_id}">
+				<div class="col-12">
+				<button type="submit" class="btn btn-success max">更新</button></div>
+				<a class="col-12" href="itemdelete.html"><button type="button"
+						class="btn btn-danger max">商品の削除</button></a>
 			</div>
 		</form>
 	</div>
-
 </body>
 </html>

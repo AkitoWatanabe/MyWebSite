@@ -2,7 +2,6 @@ package beans;
 
 public class LoginInfo {
 	//Userテーブル
-	private int user_id;
 	private String user_mail;
 	private String user_password;
 	private String user_name;
@@ -12,7 +11,6 @@ public class LoginInfo {
 	private int user_card;
 
 	//Sellerテーブル
-	private int seller_id;
 	private String seller_mail;
 	private String seller_password;
 	private String seller_name;
@@ -20,20 +18,22 @@ public class LoginInfo {
 	private String seller_address;
 	private int seller_phone_number;
 	//共通
+	private int id;
 	private String id_name;
 	private int classification_id;
 
 
-	public LoginInfo(String id_name, int classification_id) {
-		this.setId_name(id_name);
+	public LoginInfo(String id_name, int classification_id, int id) {
+		this.id_name = id_name;
 		this.classification_id = classification_id;
+		this.id = id;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getId() {
+		return id;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getUser_mail() {
 		return user_mail;
@@ -76,12 +76,6 @@ public class LoginInfo {
 	}
 	public void setUser_card(int user_card) {
 		this.user_card = user_card;
-	}
-	public int getSeller_id() {
-		return seller_id;
-	}
-	public void setSeller_id(int seller_id) {
-		this.seller_id = seller_id;
 	}
 	public String getSeller_mail() {
 		return seller_mail;

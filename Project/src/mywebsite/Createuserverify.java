@@ -63,10 +63,7 @@ public class Createuserverify extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		userDAO.setUserdata(userIdName,mail,password,userName,zipCode,address,phone);
 		//ついでにログイン処理を済ませる
-        int classificationId = 1;
-        LoginInfo user = new LoginInfo(userIdName, classificationId);
-		request.setAttribute("id_name", userIdName);
-		request.setAttribute("password", password);
+		LoginInfo user = userDAO.findByLoginInfo(userIdName, password);
 		// セッションにユーザの情報をセット
 		HttpSession session = request.getSession();
 		session.setAttribute("userInfo", user);

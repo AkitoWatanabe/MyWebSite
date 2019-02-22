@@ -38,30 +38,23 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach var="item" items="${itemList}" >
 				<tr>
-					<td><div class="tableimgsize">
-							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
-								class="img-fluid img-thumbnail" alt="水素水"></a>
-						</div></td>
-					<td><a href="itemdetail.html">水素水</a></td>
-					<td>9999個</td>
-					<td>10000個</td>
-					<td><del>100円</del> 1円</td>
-					<td><a href="selleritemdetail.html"><button type="button"
+					<td>
+						<div class="tableimgsize">
+						<input type="hidden" name="item_id"value="${item.item_id}">
+						<a href="Itemdetail?item_id=${item.item_id}"><img src="img/${item.file_name}"
+							class="img-fluid img-thumbnail" alt="${item.item_name}"></a>
+						</div>
+					</td>
+					<td><a href="Itemdetail?item_id=${item.item_id}">${item.item_name}</a></td>
+					<td>${item.surface_stock}${item.unit}</td>
+					<td>${item.real_stock}${item.unit}</td>
+					<td><del>${item.item_price}円</del> 1円</td>
+					<td><a href="Selleritemdetail?item_id=${item.item_id}"><button type="button"
 								class="btn btn-primary float-right">編集</button></a></td>
 				</tr>
-				<tr>
-					<td><div class="tableimgsize">
-							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
-								class="img-fluid img-thumbnail" alt="水素水"></a>
-						</div></td>
-					<td><a href="itemdetail.html">水素水</a></td>
-					<td>9999個</td>
-					<td>10000個</td>
-					<td><del>100円</del> 1円</td>
-					<td><a href="registeraddress.html"><button type="button"
-								class="btn btn-primary float-right">編集</button></a></td>
-				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
 		<a href="Newitem"><button type="button"

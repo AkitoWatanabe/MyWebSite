@@ -32,7 +32,8 @@ public class UserDAO {
 
 	            String userIdName = rs.getString("id_name");
 	            int classificationId = rs.getInt("classification_id");
-	            return new LoginInfo(userIdName, classificationId);
+	            int userId =rs.getInt("id");
+	            return new LoginInfo(userIdName, classificationId,userId);
 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
