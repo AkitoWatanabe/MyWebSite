@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -21,32 +23,12 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
-				</div>
-				<div class="navbar-link ml-auto">
-					ようこそ<a href="toppage.html">〇〇さん</a>
-				</div>
-				<a class="navbar-link " href="cart.html">カート </a> <a
-					class="navbar-link " href="toppage.html">ログアウト</a>
-			</div>
-		</nav>
+		<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<br>
-	<form class="form-row">
-		<div class="offset-1"></div>
-		<div class="col-10">
-			<input class="form-control max" type="text" placeholder="検索..."
-				aria-label="検索...">
-		</div>
-		<div class="col-1">
-			<button type="submit" class="btn btn-outline-success">検索</button>
-		</div>
-	</form>
-	<br>
 	<div class="container">
+	<c:choose>
+	<c:when test="${loginCheck == null}">
 		<h2 class="mx-auto" style="width: 350px;">お届け先の住所</h2>
 		<form action="payment.html">
 			<div class="custom-control custom-radio">
@@ -100,22 +82,43 @@
 				<option value="お急ぎ便">お急ぎ便</option>
 				<option value="日時指定">日時指定</option>
 				<option value="通常配送">通常配送</option>
+			</select><br><br>
+			<input type="submit" class="btn btn-success max" value="支払い方法を選択する"><br>
+		</form>
+	</c:when>
+	<c:otherwise>
+		<h3 class="mx-auto" style="width: 320px;">ログインされていません</h3>
+		<a class="col-6" href="Login"><button type="button" class="btn btn-primary max">ログインする</button></a><br><br>
+		<a class="col-6" href="Createuser"><button type="button" class="btn btn-info max">新規登録する</button></a><br>
+		<h3 class="mx-auto" style="width: 380px;">ログインせずに買い物をする</h3>
+		<form action="payment.html" method="post">
+			お名前(必須)<br>
+			姓<input type="text" name=familyname>
+			名<input type="text" name=firstname><br>
+			郵便番号(必須)<br>
+			<!-- ▼郵便番号入力フィールド(3桁+4桁) -->
+			〒<input type="text" name="zip31" size="4" maxlength="3">
+			 － <input type="text" name="zip32" size="5" maxlength="4" onKeyUp="AjaxZip3.zip2addr('zip31','zip32','pref31','addr31','addr31');"><br>
+			都道府県(必須)<br>
+			<!-- ▼住所入力フィールド(都道府県) -->
+			<input type="text" name="pref31" size="20"><br>
+			市区町村(必須)<br>
+			<!-- ▼住所入力フィールド(都道府県以降の住所) -->
+			<input type="text" name="addr31" size="40"><br> 番地(必須)<br>
+			<input type="text" name=address><br> ビル、マンション、アパート名(任意)<br>
+			<input type="text" name=address><br> 電話番号(必須)<br>
+			<input type="text" name=address><br> <br>
+			<h3 class="mx-auto" style="width: 200px;">発送方法の選択</h3>
+			<select class="float-right">
+				<option value="お急ぎ便">お急ぎ便</option>
+				<option value="日時指定">日時指定</option>
+				<option value="通常配送">通常配送</option>
 			</select><br>
 			<br> <input type="submit" class="btn btn-success max"
 				value="支払い方法を選択する">
 		</form>
-		<hr>
-		<h3 class="mx-auto" style="width: 320px;">ログインされていません</h3>
-		<a class="col-6" href="itemdetail.html"><button type="button"
-				class="btn btn-primary max">ログインする</button></a><br> <br> <a
-			class="col-6" href="registeraddress.html"><button type="button"
-				class="btn btn-info max">新規登録する</button></a><br>
-		<h3 class="mx-auto" style="width: 380px;">ログインせずに買い物をする</h3>
-		<form action="">
-			メールアドレス(必須)ログインせずに買い物する場合は上のフォームに追加<br> <input type="text"
-				name=address><br>
-		</form>
-		<br>
+	</c:otherwise>
+	</c:choose>
 	</div>
 	<footer class="footer mt-auto py-3">
 		<div class="container">

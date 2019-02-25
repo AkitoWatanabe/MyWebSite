@@ -20,12 +20,13 @@ public class Item {
 
 
 	public Item(int item_id, String file_name, String item_name, int surface_stock, int real_stock, int item_price,
-			int sale_price, String sale_start, String sale_end, String unit, String item_detail, String id_name) {
+			int sale_price, String sale_start, String sale_end, String unit, String item_detail, String id_name, int stock_arart, int seller_id) {
 		this.item_id = item_id;
 		this.file_name = file_name;
 		this.item_name = item_name;
 		this.surface_stock = surface_stock;
 		this.real_stock = real_stock;
+		this.stock_arart = stock_arart;
 		this.item_price = item_price;
 		this.sale_price = sale_price;
 		this.sale_start = sale_start;
@@ -33,6 +34,7 @@ public class Item {
 		this.unit = unit;
 		this.item_detail = item_detail;
 		this.id_name = id_name;
+		this.seller_id = seller_id;
 	}
 	public Item() {
 	}

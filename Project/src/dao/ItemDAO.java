@@ -144,7 +144,9 @@ public class ItemDAO {
                 String unit = rs.getString("unit");
                 String item_detail =rs.getString("item_detail");
                 String id_name = rs.getString("id_name");
-                Item item = new Item(item_id, file_name, item_name, surface_stock, real_stock, item_price, sale_price, sale_start, sale_end, unit, item_detail, id_name);
+                int stock_arart = rs.getInt("stock_arart");
+                int seller_id = rs.getInt("seller_id");
+                Item item = new Item(item_id, file_name, item_name, surface_stock, real_stock, item_price, sale_price, sale_start, sale_end, unit, item_detail, id_name, stock_arart, seller_id);
 
                 itemList.add(item);
             }

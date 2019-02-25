@@ -44,39 +44,55 @@ public class ItemAdd extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession session = request.getSession();
-
 		try {
 			//購入個数を取得
-			int number = -1*(Integer.parseInt(request.getParameter("number")));
+			int number = Integer.parseInt(request.getParameter("number"));
+			//在庫に戻す処理
+			int newNumber = 0;
+			String nullCheck = request.getParameter("newNumber");
+			if(nullCheck != null) {
+				newNumber = Integer.parseInt(nullCheck);
+				number = newNumber - number;
+			}
 			//選択された商品のIDを型変換し利用
 			int id = Integer.parseInt(request.getParameter("item_id"));
 			//対象のアイテム情報を取得
-			Item item = ItemDAO.getItemByItemID(id);
+			Item Item = ItemDAO.getItemByItemID(id);
 			//カートに入れた時点で表示在庫を減らす
-			ItemDAO.setItemSurfaceStock(number,id);
+			ItemDAO.setItemSurfaceStock((-1*number),id);
 
 			//追加した商品を表示するためリクエストパラメーターにセット
-			request.setAttribute("item", item);
+			request.setAttribute("item", Item);
 
 			//カートを取得
 			ArrayList<CartBeans> cart = (ArrayList<CartBeans>) session.getAttribute("cart");
 			CartBeans cartbeans = new CartBeans();
+			int index = -1;
 
 			//セッションにカートがない場合カートを作成
 			if (cart == null) {
 				cart = new ArrayList<CartBeans>();
 			}
 			//同じ商品がカートに存在しないか検索
-			if(cart.indexOf(item) != 0) {
+			System.out.println(cart.size());
+			for(int i = 0; i < cart.size(); i++) {
+				if(cart.get(i).getItem().getItem_id() == id) {
+					index = i;
+				}
+				System.out.println(i);
+			}
+			if(index != -1) {
 				//個数のみ追加
-				int tmp = cartbeans.getNumber() + number;
-				cartbeans.setNumber(tmp);
+				number += cart.get(index).getNumber();
+				cartbeans.setItem(Item);
+				cartbeans.setNumber(number);
+				cart.set(index, cartbeans);
 			}else {
 				//カートに商品を追加。
-				cartbeans.setItem(item);
+				cartbeans.setItem(Item);
+				cartbeans.setNumber(number);
+				cart.add(cartbeans);
 			}
-
-			cart.add();
 			//カート情報更新
 			session.setAttribute("cart", cart);
 			request.setAttribute("cartActionMessage", "商品を追加しました");

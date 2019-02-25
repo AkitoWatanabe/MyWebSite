@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 			<c:choose>
 				<c:when test="${userInfo.classification_id == 1}">
 					ようこそ<a href="Userpage">${userInfo.id_name}</a>さん
-					/<a class="navbar-link" href="cart.html">カート</a>
+					/<a class="navbar-link" href="Cart">カート</a>
 					/<a class="navbar-link" href="Logout">ログアウト</a>
 				</c:when>
 				<c:when test="${userInfo.classification_id == 3}">
@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
 				<c:otherwise>
 					${userinfo.user_id_name}<a href="Createuser">新規登録</a>
 					/<a href="Login">ログイン</a>
-					/<a class="navbar-link" href="cart.html">カート</a>
+					/<a class="navbar-link" href="Cart">カート</a>
 				</c:otherwise>
 			</c:choose>
 			</div>
