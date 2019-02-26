@@ -33,8 +33,11 @@ public class SellerDAO {
             String sellerIdName = rs.getString("id_name");
             int classificationId = rs.getInt("classification_id");
             int sellerId = rs.getInt("id");
+            String sellerAddress = rs.getString("seller_address");
+            String sellerName = rs.getString("seller_name");
+            int sellerPhoneNumber = rs.getInt("seller_phone_number");
 
-            return new LoginInfo(sellerIdName, classificationId,sellerId);
+            return new LoginInfo(sellerIdName, classificationId,sellerId,sellerAddress,sellerName,sellerPhoneNumber);
 
         } catch (SQLException e) {
             e.printStackTrace();

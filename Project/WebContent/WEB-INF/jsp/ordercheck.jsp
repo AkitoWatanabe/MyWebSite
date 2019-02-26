@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -19,21 +21,10 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
-				</div>
-				<div class="navbar-link ml-auto">
-					ようこそ<a href="toppage.html">〇〇さん</a>
-				</div>
-				<a class="navbar-link " href="cart.html">カート </a> <a
-					class="navbar-link " href="toppage.html">ログアウト</a>
-			</div>
-		</nav>
+		<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<br>
-	<form class="form-row">
+	<form class="form-row" action="Confirm" method="post">
 		<div class="offset-1"></div>
 		<div class="col-10">
 			<input class="form-control max" type="text" placeholder="検索..."
@@ -64,6 +55,10 @@
 						<tr>
 							<th>電話番号</th>
 							<td>1234-567-890</td>
+						</tr>
+						<tr>
+							<th>メールアドレス</th>
+							<td>test@test.jp</td>
 						</tr>
 					</tbody>
 				</table>

@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.CartBeans;
-import beans.LoginInfo;
 
 /**
- * Servlet implementation class RegisterAddress
+ * Servlet implementation class Oredercheck
  */
-@WebServlet("/RegisterAddress")
-public class RegisterAddress extends HttpServlet {
+@WebServlet("/Ordercheck")
+public class Ordercheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterAddress() {
+    public Ordercheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,14 +57,7 @@ public class RegisterAddress extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);
 		}
-
-		// ログインセッションがない場合は表示が変わる
-		LoginInfo checkSession = (LoginInfo)session.getAttribute("userInfo");
-		if(checkSession == null) {
-			request.setAttribute("loginCheck", "ログインされていません");
-		}
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registeraddress.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ordercheck.jsp");
 		dispatcher.forward(request, response);
 	}
 

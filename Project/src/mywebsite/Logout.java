@@ -41,6 +41,7 @@ public class Logout extends HttpServlet {
 					dispatcher.forward(request, response);
 				}else {
 					session.removeAttribute("userInfo");
+					session.removeAttribute("cart");
 
 					// ログアウト完了の案内
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/logout.jsp");

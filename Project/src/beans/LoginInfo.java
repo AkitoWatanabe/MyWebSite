@@ -23,10 +23,13 @@ public class LoginInfo {
 	private int classification_id;
 
 
-	public LoginInfo(String id_name, int classification_id, int id) {
+	public LoginInfo(String id_name, int classification_id, int id, String user_address, String user_name, int user_phone_number) {
 		this.id_name = id_name;
 		this.classification_id = classification_id;
 		this.id = id;
+		this.user_address = user_address;
+		this.user_name = user_name;
+		this.user_phone_number = user_phone_number;
 	}
 
 	public int getId() {
