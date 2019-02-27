@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.CartBeans;
+import beans.LoginInfo;
 
 /**
  * Servlet implementation class Oredercheck
@@ -47,16 +48,36 @@ public class Ordercheck extends HttpServlet {
 
 		ArrayList<CartBeans> cart = (ArrayList<CartBeans>) session.getAttribute("cart");
 		CartBeans cartbeans = new CartBeans();
+		LoginInfo user = (LoginInfo) session.getAttribute("user_delivery");
+		int delivery_method = (int) session.getAttribute("delivery_method");
 
 		//セッションにカートがない場合カートを作成
 		if (cart == null) {
 			cart = new ArrayList<CartBeans>();
 		}
 		//カートが空の場合
-		if(cart.size() == 0) {
+		if(cart.size() == 0 || user == null || delivery_method == 0) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);
 		}
+		String radio = request.getParameter("customRadio");
+		int paymentoption = 0;
+		if(radio.equals("cash")) {
+			//4代金引換
+			paymentoption = 4;
+		}else if(radio.equals("tmpcard")) {
+			//2クレジットカード(非登録)
+			paymentoption = 2;
+		}else if(radio.equals("transfer")) {
+			//3銀行振込
+			paymentoption = 3;
+		}else {
+			//1登録されたクレジットカード
+			paymentoption = 1;
+		}
+		request.setAttribute("parment_option", paymentoption);
+		request.setAttribute("user_delivery", user);
+		request.setAttribute("delivery_method", delivery_method);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ordercheck.jsp");
 		dispatcher.forward(request, response);
 	}

@@ -2,6 +2,7 @@ package mywebsite;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.CartBeans;
+import beans.LoginInfo;
+import beans.User;
 
 /**
  * Servlet implementation class Payment
@@ -58,15 +61,33 @@ public class Payment extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);
 		}
-
+		//tmpaddressは登録ユーザが登録された住所以外に配送する場合
+		//nullは非登録ユーザ
+		//その他は登録ユーザの住所
         String radio = request.getParameter("customRadio");
         System.out.println(radio);
-        if(radio.equals(null)){
-        	String mail = request.getParameter("mail");
-        	request.setAttribute("mail", mail);
-        }else if(radio.equals("tmpaddress") || radio.equals(null)){
-
+        User user = new User();
+        if(radio == null){
+        	user.setUser_mail(request.getParameter("mail"));
+        }if(radio == null || Objects.equals(radio ,"tmpaddress")){
+        	user.setUser_name(request.getParameter("familyname") + request.getParameter("firstname"));
+        	user.setUser_post_code(Integer.parseInt(request.getParameter("zip31") + request.getParameter("zip32")));
+        	String tmp1 = request.getParameter("pref31");
+        	String tmp2 = request.getParameter("addr31");
+        	String tmp3 = request.getParameter("addr32");
+        	String tmp4 = request.getParameter("addr33");
+        	user.setUser_address(tmp1 + tmp2 + tmp3 + tmp4);
+        	user.setUser_phone_number(Integer.parseInt(request.getParameter("phone")));
+        }else {
+        	LoginInfo userinfo = (LoginInfo) session.getAttribute("userInfo");
+        	user.setUser_name(userinfo.getUser_name());
+        	user.setUser_post_code(userinfo.getUser_post_code());
+        	user.setUser_address(userinfo.getUser_address());
+        	user.setUser_phone_number(userinfo.getUser_phone_number());
+        	user.setUser_mail(userinfo.getUser_mail());
         }
+        request.setAttribute("delivery_method", request.getParameter("delivery_method"));
+        request.setAttribute("user_delivery", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/payment.jsp");
 		dispatcher.forward(request, response);
 	}

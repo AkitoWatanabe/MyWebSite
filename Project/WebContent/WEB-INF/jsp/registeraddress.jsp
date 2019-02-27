@@ -32,7 +32,7 @@
 		<h2 class="mx-auto" style="width: 350px;">お届け先の住所</h2>
 		<form action="Payment" method="post">
 			<div class="custom-control custom-radio">
-				<input  type="radio" id="default" name="customRadio"
+				<input type="radio" id="default" name="customRadio"
 					class="custom-control-input" value="default" checked> <label
 					class="custom-control-label" for="default">登録された住所へお届け</label>
 				<br>
@@ -57,9 +57,8 @@
 					class="btn btn-primary float-right">登録された住所の編集</button></a>
 
 			<div class="custom-control custom-radio">
-				<input id="tmpaddress" name="customRadio" type="radio"
-					class="custom-control-input" value="tmpaddress"> <br> <br> <label
-					class="custom-control-label" for="tmpaddress">指定された住所へお届け</label><br>
+				<input id="tmpaddress" name="customRadio" type="radio" class="custom-control-input" value="tmpaddress"><br><br>
+				<label class="custom-control-label" for="tmpaddress">指定された住所へお届け</label><br>
 				<!-- チェックボックスがこちらについた時だけ下の項目を必須に変更するように実装 -->
 				お名前(必須)<br>
 				姓<input type="text" name=familyname>
@@ -146,9 +145,9 @@
 			<h3 class="mx-auto" style="width: 200px;">発送方法の選択</h3>
 			<select class="float-right" required>
 				<option value="">-- 選択してください --</option>
-				<option value="お急ぎ便">お急ぎ便</option>
-				<option value="日時指定">日時指定</option>
-				<option value="通常配送">通常配送</option>
+				<option value="1">お急ぎ便</option>
+				<option value="2">通常配送</option>
+				<option value="3">日時指定</option>
 			</select><br><br>
 			<input type="submit" class="btn btn-success max" value="支払い方法を選択する"><br>
 		</form>

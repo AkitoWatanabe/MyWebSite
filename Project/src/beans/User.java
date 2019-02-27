@@ -18,6 +18,9 @@ public class User {
 		this.classification_id = classification_id;
 	}
 
+	public User() {
+	}
+
 	public int getClassification_id() {
 		return classification_id;
 	}
