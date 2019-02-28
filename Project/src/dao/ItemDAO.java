@@ -166,7 +166,6 @@ public class ItemDAO {
         }
         return itemList;
     }
-	//アイテムidによる商品情報の書き換え
 	public void updateItem(String file_name, String item_name, String item_detail, int item_price, int sale_price,
 			String sale_start, String sale_end, int add_stock, String unit, int stock_arart, int item_id) {
 		Connection conn = null;
@@ -175,71 +174,57 @@ public class ItemDAO {
 			conn = DBManager.getConnection();
 
 			// SELECT文を準備
-			StringJoiner joiner1 = new StringJoiner(",","update item set ","where item_id = ? ;");
-			joiner1.setEmptyValue("");
+			StringJoiner joiner = new StringJoiner(",","update item set "," where item_id = ? ;");
+			joiner.setEmptyValue("");
 			int i = 1;
 			if(item_price !=0) {
-				joiner1.add("item_price = ?");
-				//i+=3;
+				joiner.add("item_price = ?");
 			}
 	        if(sale_price != 0) {
-	        	joiner1.add("sale_price = ?,sale_start = ?,sale_end = ?");
-	        	//i+=3;
+	        	joiner.add("sale_price = ?,sale_start = ?,sale_end = ?");
 	        }
 	        if(item_name != null) {
-	        	joiner1.add("item_name = ?");
-	        	//i+=1;
+	        	joiner.add("item_name = ?");
 	        }
 	        if(add_stock != 0) {
-	        	joiner1.add("surface_stock = surface_stock + ? ,real_stock = real_stock + ?");
-	        	//i+=2;
+	        	joiner.add("surface_stock = surface_stock + ? ,real_stock = real_stock + ?");
 	        }
 	        if(unit != null) {
-	        	joiner1.add("unit = ?");
-	        	//i+=1;
+	        	joiner.add("unit = ?");
 	        }
 	        if(item_detail != null) {
-	        	joiner1.add("item_detail = ?");
-	        	//i+=1;
+	        	joiner.add("item_detail = ?");
 	        }
 	        if(!(file_name.isEmpty())) {
-	        	joiner1.add("file_name = ?");
-	        	//i+=1;
+	        	joiner.add("file_name = ?");
 	        }
 
-	        String sql = joiner1.toString();
+	        String sql = joiner.toString();
 
 	        PreparedStatement pstmt = conn.prepareStatement(sql);
 	        if(item_price !=0) {
-	        	pstmt.setInt(i,item_price);
-	        	i++;
+	        	pstmt.setInt(i++,item_price);
 	        }
 	        if(sale_price !=0) {
-	        	pstmt.setInt(i, sale_price);
-	        	pstmt.setString(++i, sale_start);
-	        	pstmt.setString(++i, sale_end);
-	        	i++;
+	        	pstmt.setInt(i++, sale_price);
+	        	pstmt.setString(i++, sale_start);
+	        	pstmt.setString(i++, sale_end);
 	        }
 	        if(item_name != null) {
-	        	pstmt.setString(i,item_name);
-	        	i++;
+	        	pstmt.setString(i++,item_name);
 	        }
 	        if(add_stock !=0) {
-	        	pstmt.setInt(i, add_stock);
-	        	pstmt.setInt(++i, add_stock);
-	        	i++;
+	        	pstmt.setInt(i++, add_stock);
+	        	pstmt.setInt(i++, add_stock);
 	        }
 	        if(unit != null) {
-	        	pstmt.setString(i, unit);
-	        	i++;
+	        	pstmt.setString(i++, unit);
 	        }
 	        if(item_detail != null) {
-	        	pstmt.setString(i, item_detail);
-	        	i++;
+	        	pstmt.setString(i++, item_detail);
 	        }
 	        if(!(file_name.isEmpty())) {
-	        	pstmt.setString(i, file_name);
-	        	i++;
+	        	pstmt.setString(i++, file_name);
 	        }
 	        pstmt.setInt(i, item_id);
 
@@ -260,6 +245,94 @@ public class ItemDAO {
 			}
 		}
 	}
+
+	//アイテムidによる商品情報の書き換え(改良中)
+	/*public void updateItem(String file_name, String item_name, String item_detail, int item_price, int sale_price,
+			String sale_start, String sale_end, int add_stock, String unit, int stock_arart, int item_id) {
+		Connection conn = null;
+		try {
+	    // データベースへ接続
+			conn = DBManager.getConnection();
+
+			// SELECT文を準備
+			StringJoiner joiner = new StringJoiner(",","update item set "," where item_id = ? ;");
+			joiner.setEmptyValue("");
+			ArrayList<String> array = new ArrayList<String>();
+			HashMap<String, String> map = new HashMap<>();
+			if(item_price !=0) {
+				joiner.add("item_price = ?");
+				array.add("item_price");
+				map.put("item_price", "String");
+			}
+	        if(sale_price != 0) {
+	        	joiner.add("sale_price = ?,sale_start = ?,sale_end = ?");
+	        	array.add("sale_price");
+	        	array.add("sale_start");
+	        	array.add("sale_end");
+	        	map.put("sale_price","int");
+	        	map.put("sale_start","int");
+	        	map.put("sale_end","int");
+	        }
+	        if(item_name != null) {
+	        	joiner.add("item_name = ?");
+	        	array.add("item_name");
+	        	map.put("item_name","String");
+	        }
+	        if(add_stock != 0) {
+	        	joiner.add("surface_stock = surface_stock + ? ,real_stock = real_stock + ?");
+	        	array.add("add_stock");
+	        	array.add("add_stock");
+	        	map.put("add_stock","int");
+	        }
+	        if(unit != null) {
+	        	joiner.add("unit = ?");
+	        	array.add("unit");
+	        	map.put("unit","String");
+	        }
+	        if(item_detail != null) {
+	        	joiner.add("item_detail = ?");
+	        	array.add("item_detail");
+	        	map.put("item_detail","String");
+	        }
+	        if(!(file_name.isEmpty())) {
+	        	joiner.add("file_name = ?");
+	        	array.add("file_name");
+	        	map.put("file_name","String");
+	        }
+
+	        String sql = joiner.toString();
+
+	        PreparedStatement pstmt = conn.prepareStatement(sql);
+	        int i = 0;
+	      //代入した時点でtmpの方に引っ張られる解決できるならばinstanceofを使って評価できる
+	        for(i = 0; i < array.size() ; i++) {
+	        	String tmp = array.get(i);
+	        	if(map.get(tmp).equals("String")) {
+	        		pstmt.setString(i + 1, tmp);
+	        	}else {
+	        		pstmt.setInt(i + 1, tmp);
+	        	}
+	        }
+	       	pstmt.setInt(i+ 1, item_id);
+
+	        System.out.println(sql);
+	        System.out.println(pstmt);
+	        pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// データベース切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	*/
 	//商品検索
 	public static ArrayList<Item> getItemsByItemName(String searchWord, int pageNum, int pageMaxItemCount) throws SQLException {
 		Connection con = null;

@@ -36,7 +36,8 @@ public class UserDAO {
 	            String userAddress = rs.getString("user_address");
 	            String userName = rs.getString("user_name");
 	            int userPhoneNumber = rs.getInt("user_phone_number");
-	            return new LoginInfo(userIdName, classificationId,userId,userAddress,userName,userPhoneNumber);
+	            String userMail = rs.getString("user_mail");
+	            return new LoginInfo(userIdName, classificationId,userId,userAddress,userName,userPhoneNumber,userMail);
 
 	        } catch (SQLException e) {
 	            e.printStackTrace();

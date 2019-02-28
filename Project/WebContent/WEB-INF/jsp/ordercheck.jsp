@@ -24,17 +24,6 @@
 		<jsp:include page="/baselayout/header.jsp" />
 	</header>
 	<br>
-	<form class="form-row" action="Confirm" method="post">
-		<div class="offset-1"></div>
-		<div class="col-10">
-			<input class="form-control max" type="text" placeholder="検索..."
-				aria-label="検索...">
-		</div>
-		<div class="col-1">
-			<button type="submit" class="btn btn-outline-success">検索</button>
-		</div>
-	</form>
-	<br>
 	<div class="container">
 	<h2 class="mx-auto" style="width: 350px;">注文情報の確認</h2>
 	<form action="confirm.html">
@@ -46,19 +35,19 @@
 					<tbody>
 						<tr>
 							<th scope="row">住所</th>
-							<td>日本</td>
+							<td>${user_delivery.user_address}</td>
 						</tr>
 						<tr>
 							<th>お名前</th>
-							<td>〇〇</td>
+							<td>${user_delivery.user_name}</td>
 						</tr>
 						<tr>
 							<th>電話番号</th>
-							<td>1234-567-890</td>
+							<td>${user_delivery.user_phone_number}</td>
 						</tr>
 						<tr>
 							<th>メールアドレス</th>
-							<td>test@test.jp</td>
+							<td>${user_delivery.user_mail}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -72,36 +61,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td><div class="tableimgsize">
-							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
-								class="img-fluid img-thumbnail" alt="水素水"></a>
-						</div></td>
-					<td><a href="itemdetail.html">水素水</a></td>
-					<td>1個</td>
-					<td><del>１００円</del> 1円</td>
-				</tr>
-				<tr>
-					<td><div class="tableimgsize">
-							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
-								class="img-fluid img-thumbnail" alt="水素水"></a>
-						</div></td>
-					<td><a href="itemdetail.html">水素水</a></td>
-					<td>1個</td>
-					<td><del>１００円</del> 1円</td>
-				</tr>
-				<tr>
-					<td><div class="tableimgsize">
-							<a href="itemdetail.html"><img src="img/256668_xl.jpg"
-								class="img-fluid img-thumbnail" alt="水素水"></a>
-						</div></td>
-					<td><a href="itemdetail.html">水素水</a></td>
-					<td>1個</td>
-					<td><del>１００円</del> 1円</td>
-				</tr>
+			<c:forEach var="item" items="${cart}" >
+					<tr>
+						<td><div class="tableimgsize">
+								<a href="Itemdetail?item_id=${item.item.item_id}"><img src="img/${item.item.file_name}"
+									class="img-fluid img-thumbnail" alt="${item.item.item_name}"></a>
+							</div></td>
+						<td><a href="Itemdetail?item_id=${item.item.item_id}">${item.item.item_name}</a></td>
+						<td>${item.number}${item.item.unit}</td>
+						<td><del>${item.item.item_price}円</del> 1円</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
-		<a class="float-right" href="cart.html">カートの中身を変更する</a>
+		<a class="float-right" href="Cart">カートの中身を変更する</a>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -114,13 +87,13 @@
 			<tbody>
 				<tr>
 					<td></td>
-					<td>お急ぎ便</td>
+					<td>${delivery_method}</td>
 					<td></td>
-					<td>864円</td>
+					<td>${delivery_method}円</td>
 				</tr>
 			</tbody>
 		</table>
-		<a class="float-right" href="cart.html">配送方法を変更する</a>
+		<a class="float-right" href="RegisterAddress">配送方法を変更する</a>
 	<table class="table table-striped">
 			<thead>
 				<tr>
@@ -133,13 +106,13 @@
 			<tbody>
 				<tr>
 					<td></td>
-					<td>代金引換</td>
+					<td>${paymentoption}</td>
 					<td></td>
-					<td>324円</td>
+					<td>${paymentoption}円</td>
 				</tr>
 			</tbody>
 		</table>
-		<a class="float-right" href="cart.html">お支払い方法を変更する</a>
+		<a class="float-right" href="Payment">お支払い方法を変更する</a>
 	<table class="table table-striped">
 			<thead>
 				<tr>
@@ -154,7 +127,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td>1191円</td>
+					<td>${paymentoption}円</td>
 				</tr>
 			</tbody>
 		</table>

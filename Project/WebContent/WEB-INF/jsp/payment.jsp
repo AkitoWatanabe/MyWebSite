@@ -39,6 +39,11 @@
 							VISA 下4桁　${userInfo.user_card}
 						</c:otherwise>
 					</c:choose>
+					<c:if test="${errMsg != null}" >
+	    				<div class="alert">
+		  					${errMsg}
+						</div>
+					</c:if>
 				<a href="registeraddress.html" class="btn btn-primary float-right" role="button">登録されたクレジットカードの編集</a><br><br>
 			</c:if>
 			</div>
@@ -76,8 +81,6 @@
 				<br>手数料が324円かかります。
 			</div><br>
 
-			<input type="hidden" name="delivery_method" value="${delivery_method}">
-			<input type="hidden" name="user_delivery" value="${user_delivery}">
 			<input type="submit" class="btn btn-success max" value="注文情報を確認する">
 		</form>
 	</div>

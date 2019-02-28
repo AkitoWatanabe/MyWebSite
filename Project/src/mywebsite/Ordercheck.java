@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import beans.CartBeans;
 import beans.LoginInfo;
+import beans.User;
 
 /**
  * Servlet implementation class Oredercheck
@@ -48,8 +49,9 @@ public class Ordercheck extends HttpServlet {
 
 		ArrayList<CartBeans> cart = (ArrayList<CartBeans>) session.getAttribute("cart");
 		CartBeans cartbeans = new CartBeans();
-		LoginInfo user = (LoginInfo) session.getAttribute("user_delivery");
-		int delivery_method = (int) session.getAttribute("delivery_method");
+		User user = (User) session.getAttribute("user_delivery");
+		String delivery_method_tmp = (String) session.getAttribute("delivery_method");
+		int delivery_method = Integer.parseInt(delivery_method_tmp);
 
 		//セッションにカートがない場合カートを作成
 		if (cart == null) {
@@ -68,12 +70,25 @@ public class Ordercheck extends HttpServlet {
 		}else if(radio.equals("tmpcard")) {
 			//2クレジットカード(非登録)
 			paymentoption = 2;
+			String card = (String) request.getAttribute("card");
+			request.setAttribute("card", card);
 		}else if(radio.equals("transfer")) {
 			//3銀行振込
 			paymentoption = 3;
 		}else {
-			//1登録されたクレジットカード
-			paymentoption = 1;
+			LoginInfo userinfo = (LoginInfo) session.getAttribute("userInfo");
+			int tmp = userinfo.getUser_card();
+			if(tmp == 0) {
+				request.setAttribute("errMsg", "クレジットカードが登録されていない為、選択できません");
+				request.setAttribute("user_delivery", user);
+				request.setAttribute("delivery_method", delivery_method);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/payment.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}else {
+				//1登録されたクレジットカード
+				paymentoption = 1;
+			}
 		}
 		request.setAttribute("parment_option", paymentoption);
 		request.setAttribute("user_delivery", user);

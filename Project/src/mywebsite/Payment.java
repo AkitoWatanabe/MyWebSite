@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.CartBeans;
+import beans.Delivery_method;
 import beans.LoginInfo;
 import beans.User;
+import dao.DeliveryMethodDAO;
 
 /**
  * Servlet implementation class Payment
@@ -51,6 +53,8 @@ public class Payment extends HttpServlet {
 
 		ArrayList<CartBeans> cart = (ArrayList<CartBeans>) session.getAttribute("cart");
 		CartBeans cartbeans = new CartBeans();
+		String delivery_method_num = request.getParameter("delivery_method");
+		DeliveryMethodDAO deliveryMethodDAO = new DeliveryMethodDAO();
 
 		//セッションにカートがない場合カートを作成
 		if (cart == null) {
@@ -86,8 +90,9 @@ public class Payment extends HttpServlet {
         	user.setUser_phone_number(userinfo.getUser_phone_number());
         	user.setUser_mail(userinfo.getUser_mail());
         }
-        request.setAttribute("delivery_method", request.getParameter("delivery_method"));
-        request.setAttribute("user_delivery", user);
+        Delivery_method delivery_method = deliveryMethodDAO.findByMethod(Integer.parseInt(delivery_method_num));
+        session.setAttribute("delivery_method", delivery_method);
+        session.setAttribute("user_delivery", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/payment.jsp");
 		dispatcher.forward(request, response);
 	}

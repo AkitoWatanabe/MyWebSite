@@ -143,11 +143,11 @@
 				<input type="text" name=phone><br><br>
 			</div>
 			<h3 class="mx-auto" style="width: 200px;">発送方法の選択</h3>
-			<select class="float-right" required>
+			<select name="delivery_method" class="float-right" required>
 				<option value="">-- 選択してください --</option>
 				<option value="1">お急ぎ便</option>
-				<option value="2">通常配送</option>
 				<option value="3">日時指定</option>
+				<option value="2">通常配送</option>
 			</select><br><br>
 			<input type="submit" class="btn btn-success max" value="支払い方法を選択する"><br>
 		</form>
@@ -246,9 +246,9 @@
 			<h3 class="mx-auto" style="width: 200px;">発送方法の選択</h3>
 			<select name="delivery_method" class="float-right" required>
 				<option value="">-- 選択してください --</option>
-				<option value="お急ぎ便">お急ぎ便</option>
-				<option value="日時指定">日時指定</option>
-				<option value="通常配送">通常配送</option>
+				<option value="1">お急ぎ便</option>
+				<option value="3">日時指定</option>
+				<option value="2">通常配送</option>
 			</select><br><br>
 			<input type="submit" class="btn btn-success max"
 				value="支払い方法を選択する">
