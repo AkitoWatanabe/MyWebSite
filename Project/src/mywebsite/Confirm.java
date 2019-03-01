@@ -62,6 +62,9 @@ public class Confirm extends HttpServlet {
 		for(CartBeans CB : cart) {
 			orderDetailDAO.setOderDetail(CB,order_id,payment.getPayment_option_id());
 		}
+		session.removeAttribute("cart");
+		session.removeAttribute("delivery_method");
+		session.removeAttribute("payment_option");
 		request.getRequestDispatcher("/WEB-INF/jsp/confirm.jsp").forward(request, response);
 	}
 }
