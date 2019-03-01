@@ -25,6 +25,7 @@ public class DeliveryMethodDAO {
 			if (rs.next()) {
 				delivery_method.setDelivery_method_name(rs.getString("delivery_method_name"));
 				delivery_method.setDelivery_method_price(rs.getInt("delivery_method_price"));
+				delivery_method.setDelivery_method_id(rs.getInt("delivery_method_id"));
 			}
 
 			return delivery_method;

@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.CartBeans;
+import beans.Delivery_method;
 import beans.LoginInfo;
+import beans.PaymentOption;
 import beans.User;
+import dao.PaymentOptionDAO;
 
 /**
  * Servlet implementation class Oredercheck
@@ -50,31 +53,30 @@ public class Ordercheck extends HttpServlet {
 		ArrayList<CartBeans> cart = (ArrayList<CartBeans>) session.getAttribute("cart");
 		CartBeans cartbeans = new CartBeans();
 		User user = (User) session.getAttribute("user_delivery");
-		String delivery_method_tmp = (String) session.getAttribute("delivery_method");
-		int delivery_method = Integer.parseInt(delivery_method_tmp);
+		Delivery_method delivery_method = (Delivery_method) session.getAttribute("delivery_method");
 
 		//セッションにカートがない場合カートを作成
 		if (cart == null) {
 			cart = new ArrayList<CartBeans>();
 		}
-		//カートが空の場合
-		if(cart.size() == 0 || user == null || delivery_method == 0) {
+		//情報が欠けている場合
+		if(cart.size() == 0 || user == null || delivery_method.getDelivery_method_id() == 0) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);
 		}
 		String radio = request.getParameter("customRadio");
-		int paymentoption = 0;
+		int paymentoptionNum = 0;
 		if(radio.equals("cash")) {
 			//4代金引換
-			paymentoption = 4;
+			paymentoptionNum = 4;
 		}else if(radio.equals("tmpcard")) {
 			//2クレジットカード(非登録)
-			paymentoption = 2;
+			paymentoptionNum = 2;
 			String card = (String) request.getAttribute("card");
 			request.setAttribute("card", card);
 		}else if(radio.equals("transfer")) {
 			//3銀行振込
-			paymentoption = 3;
+			paymentoptionNum = 3;
 		}else {
 			LoginInfo userinfo = (LoginInfo) session.getAttribute("userInfo");
 			int tmp = userinfo.getUser_card();
@@ -87,12 +89,20 @@ public class Ordercheck extends HttpServlet {
 				return;
 			}else {
 				//1登録されたクレジットカード
-				paymentoption = 1;
+				paymentoptionNum = 1;
 			}
 		}
-		request.setAttribute("parment_option", paymentoption);
-		request.setAttribute("user_delivery", user);
-		request.setAttribute("delivery_method", delivery_method);
+		PaymentOptionDAO paymentOptionDAO = new PaymentOptionDAO();
+		PaymentOption paymetOption = paymentOptionDAO.findByPaymentOption(paymentoptionNum);
+
+		int totalPrice = 0;
+		for(CartBeans i :cart) {
+			totalPrice += (i.getNumber()) * (i.getItem().getItem_price());
+		}
+		totalPrice += delivery_method.getDelivery_method_price() + paymetOption.getPayment_option_price();
+
+		request.setAttribute("total_price", totalPrice);
+		session.setAttribute("payment_option", paymetOption);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ordercheck.jsp");
 		dispatcher.forward(request, response);
 	}

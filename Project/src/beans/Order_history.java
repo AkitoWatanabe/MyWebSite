@@ -9,8 +9,15 @@ public class Order_history {
 	private int total_price;
 	private Date buy_date;
 	private String buy_user;
+	private int payment_option_id;
 
 
+	public int getPayment_option_id() {
+		return payment_option_id;
+	}
+	public void setPayment_option_id(int payment_option_id) {
+		this.payment_option_id = payment_option_id;
+	}
 	public int getOrder_id() {
 		return order_id;
 	}

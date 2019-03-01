@@ -78,7 +78,7 @@
 			<div class="custom-control custom-radio">
 				<input id="customRadio4" name="customRadio" type="radio" class="custom-control-input" value="cash">
 				<label class="custom-control-label" for="customRadio4">代金引換でお支払い</label>
-				<br>手数料が324円かかります。
+				<br>手数料が300円かかります。
 			</div><br>
 
 			<input type="submit" class="btn btn-success max" value="注文情報を確認する">

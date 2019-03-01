@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -19,38 +21,16 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="toppage.html">toppage.jp</a>
-				</div>
-				<div class="navbar-link ml-auto">
-					ようこそ<a href="toppage.html">〇〇さん</a>
-				</div>
-				<a class="navbar-link " href="cart.html">カート </a> <a
-					class="navbar-link " href="toppage.html">ログアウト</a>
-			</div>
-		</nav>
+		<jsp:include page="/baselayout/header.jsp" />
 	</header>
-	<br>
-	<form class="form-row">
-		<div class="offset-1"></div>
-		<div class="col-10">
-			<input class="form-control max" type="text" placeholder="検索..."
-				aria-label="検索...">
-		</div>
-		<div class="col-1">
-			<button type="submit" class="btn btn-outline-success">検索</button>
-		</div>
-	</form>
 	<br>
 	<div class="container">
 	<h1 class="mx-auto" style="width: 400px;">注文を受け付けました</h1>
 	<h2 class="mx-auto" style="width: 400px;">注文番号は00000001番です</h2>
 	<h3 class="mx-auto" style="width: 380px;">登録(入力)されたメールアドレスにメールを送りました。</h3>
 	<br>
-	<a href="toppage.html"><button type="button"class="btn btn-primary max">TOPへ戻る</button></a><br><br>
-	<a href="orderdetail.html"><button type="button" class="btn btn-success max">注文履歴を見る</button></a>
+	<a href="Toppage"><button type="button"class="btn btn-primary max">TOPへ戻る</button></a><br><br>
+	<a href="Orderdetail"><button type="button" class="btn btn-success max">注文履歴を見る</button></a>
 	</div>
 </body>
 </html>

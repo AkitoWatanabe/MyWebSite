@@ -39,6 +39,7 @@ public class Payment extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -73,6 +74,9 @@ public class Payment extends HttpServlet {
         User user = new User();
         if(radio == null){
         	user.setUser_mail(request.getParameter("mail"));
+        	user.setClassification_id(2);
+        }if(Objects.equals(radio ,"tmpaddress")){
+        	user.setClassification_id(1);
         }if(radio == null || Objects.equals(radio ,"tmpaddress")){
         	user.setUser_name(request.getParameter("familyname") + request.getParameter("firstname"));
         	user.setUser_post_code(Integer.parseInt(request.getParameter("zip31") + request.getParameter("zip32")));
@@ -89,6 +93,7 @@ public class Payment extends HttpServlet {
         	user.setUser_address(userinfo.getUser_address());
         	user.setUser_phone_number(userinfo.getUser_phone_number());
         	user.setUser_mail(userinfo.getUser_mail());
+        	user.setClassification_id(1);
         }
         Delivery_method delivery_method = deliveryMethodDAO.findByMethod(Integer.parseInt(delivery_method_num));
         session.setAttribute("delivery_method", delivery_method);

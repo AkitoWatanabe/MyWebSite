@@ -1,0 +1,273 @@
+個人開発
+条件
+servretとjsp、データベースを必ず使うこと
+
+手順
+仕様書を書く
+モック製作
+テーブル設計
+実装
+
+jsp制作時ヘッダー(同じ記述)をincludeで別ファイル化できる。
+
+レビューは1商品１件か１購入１件かを考える　1商品1件でレビューの更新を可能にする
+
+
+sqlの領域確保は1バイト基準 utf8は最大3バイトなので最大値は1/3される
+MySQLでは、すべてのカラムを結合したサイズに 65,535 行のサイズ制限が課されている
+
+ログイン後にログイン前のページに戻るようにする
+<%=request.getContextPath()%>
+
+thml⇒jspへの変換時先頭に記述
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+jspのヘッダー部に記述
+<jsp:include page="/baselayout/header.jsp" />
+
+sarvletの文字化け対策
+request.setCharacterEncoding("UTF-8");
+
+@MultipartConfig(
+	    location="C:/Users/LIKEIT_STUDENT/Documents/GitHub/MyWebSite/Project/WebContent/WEB-INF/uploaded", // ディレクトリパスを指定することも出来る (しなくても良い)
+	    fileSizeThreshold=32768,
+	    maxFileSize=5242880,
+	    maxRequestSize=27262976
+	)
+
+
+
+
+
+
+
+
+mywebsiteテーブル実装sql
+
+create database mywebsite default character set utf8;
+
+use mywebsite;
+
+create table item (
+item_id serial
+,item_name varchar(255) not null
+,item_price int not null
+,sale_price int
+,sale_start datetime
+,sale_end datetime
+,surface_stock int unsigned not null
+,real_stock int not null
+,stock_arart int not null
+,unit varchar(255) not null
+,seller_id varchar(255) not null
+,item_detail varchar(1023) not null
+,file_name varchar(1023)
+);
+
+create table user (
+id serial
+,id_name varchar(255) unique not null
+,user_mail varchar(255) unique not null
+,user_password varchar(255) not null
+,user_name varchar(255) not null
+,user_post_code int not null
+,user_address varchar(255) not null
+,user_phone_number int not null
+,user_card int
+,classification_id int not null
+);
+
+create table temp_user (
+temp_user_id serial
+,temp_user_id_name varchar(255) not null
+,temp_user_mail varchar(255) not null
+,temp_user_password varchar(255) not null
+,temp_user_name varchar(255) not null
+,temp_user_post_code int not null
+,temp_user_address varchar(255) not null
+,temp_user_phone_number int not null
+,temp_user_card int
+,classification_id int not null
+);
+
+create table order_history (
+order_id serial
+,delivery_method_id int not null
+,total_price int not null
+,buy_date datetime not null
+,buy_user varchar(255) not null
+,classification_id int not null
+,payment_option_id int not null
+);
+
+create table order_detail (
+order_detail_id serial
+,order_id int not null
+,item_id int not null
+,item_number int not null
+);
+
+create table seller (
+id serial
+,id_name varchar(255)unique not null
+,seller_mail varchar(255)unique not null
+,seller_password varchar(255) not null
+,seller_name varchar(255) not null
+,seller_post_code int not null
+,seller_address varchar(255) not null
+,seller_phone_number int not null
+,classification_id int not null
+);
+
+create table delivery_state (
+delivery_state_id serial
+,delivery_state_name varchar(255)unique not null
+);
+
+create table review (
+review_id serial
+,item_id int not null
+,user_id int not null
+,review_score int not null
+,review_text varchar(21836) not null
+,review_date datetime not null
+);
+
+create table delivery_method (
+delivery_method_id serial
+,delivery_method_name varchar(255)unique not null
+,delivery_method_price int not null
+);
+
+
+create table classification (
+classification_id serial
+,classification_id_name char(255)not null
+);
+
+insert into delivery_state (delivery_state_name)values(
+'注文済み'
+);
+
+insert into delivery_state (delivery_state_name)values(
+'発送準備'
+);
+
+insert into delivery_state (delivery_state_name)values(
+'発送済み'
+);
+
+insert into delivery_state (delivery_state_name)values(
+'配達完了'
+);
+
+insert into delivery_method (delivery_method_name,delivery_method_price)values(
+'お急ぎ便',500
+);
+
+insert into delivery_method (delivery_method_name,delivery_method_price)values(
+'通常配送',0
+);
+
+insert into delivery_method (delivery_method_name,delivery_method_price)values(
+'日時指定',200
+);
+
+insert into classification (classification_id_name)values(
+'ユーザ'
+);
+
+insert into classification (classification_id_name)values(
+'非登録ユーザ'
+);
+
+insert into classification (classification_id_name)values(
+'販売者'
+);
+
+create table payment_option (
+payment_option_id serial
+,payment_option_name varchar(255)unique not null
+,payment_option_price int not null
+);
+
+insert payment_option(
+payment_option_name,payment_option_price)
+values('登録されたクレジットカード',0
+);
+
+insert payment_option(
+payment_option_name,payment_option_price)
+values('クレジットカード',0
+);
+
+insert payment_option(
+payment_option_name,payment_option_price)
+values('銀行振込',0
+);
+
+insert payment_option(
+payment_option_name,payment_option_price)
+values('代金引換',300
+);
+
+
+
+
+
+insert into user (
+user_id_name
+,user_mail
+,user_password
+,user_name
+,user_post_code
+,user_address
+,user_phone_number
+,classification_id
+)
+values(
+'testuser'
+,'testuser@gmail.com'
+,'password'
+,'テスト太郎'
+,1000000
+,'東京都千代田区○○'
+,0123456789
+,1
+);
+
+insert into item (
+item_name
+,item_price
+,sale_price
+,sale_start
+,sale_end
+,surface_stock
+,real_stock
+,stock_arart
+,unit
+,seller_id
+,item_detail
+,file_name
+)
+values(
+'商品名'
+,100
+,1
+,cast('2000-01-01 00:00:00' as datetime)
+,cast('2000-12-31 23:59:00' as datetime)
+,100
+,100
+,1
+,'個'
+,1
+,'商品説明'
+,'画像アドレス'
+);
+
+
+SELECT * FROM item
+inner join seller
+on item.seller_id = seller.id
+ WHERE item_id = 1;

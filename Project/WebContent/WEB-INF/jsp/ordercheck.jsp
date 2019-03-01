@@ -26,7 +26,7 @@
 	<br>
 	<div class="container">
 	<h2 class="mx-auto" style="width: 350px;">注文情報の確認</h2>
-	<form action="confirm.html">
+	<form action="Confirm" method="post">
 	<table class="table">
 					<thead>
 						<tr>
@@ -87,14 +87,14 @@
 			<tbody>
 				<tr>
 					<td></td>
-					<td>${delivery_method}</td>
+					<td>${delivery_method.delivery_method_name}</td>
 					<td></td>
-					<td>${delivery_method}円</td>
+					<td>${delivery_method.delivery_method_price}円</td>
 				</tr>
 			</tbody>
 		</table>
 		<a class="float-right" href="RegisterAddress">配送方法を変更する</a>
-	<table class="table table-striped">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th></th>
@@ -106,9 +106,9 @@
 			<tbody>
 				<tr>
 					<td></td>
-					<td>${paymentoption}</td>
+					<td>${payment_option.payment_option_name}</td>
 					<td></td>
-					<td>${paymentoption}円</td>
+					<td>${payment_option.payment_option_price}円</td>
 				</tr>
 			</tbody>
 		</table>
@@ -127,10 +127,11 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td>${paymentoption}円</td>
+					<td>${total_price}円</td>
 				</tr>
 			</tbody>
 		</table>
+		<input type="hidden" name="total_price" value="${total_price}">
 		<input type="submit" class="btn btn-success max" value="注文を確定する">
 		</form>
 	</div>
